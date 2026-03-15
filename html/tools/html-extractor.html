@@ -1,0 +1,108 @@
+<div class="tool-header">
+    <h1>
+        <img src="images/tools/html-extractor.webp" alt="">
+        HTML Extractor
+    </h1>
+    <p>Extract all inline <span>&lt;style&gt;</span> and <span>&lt;script&gt;</span> blocks from an HTML
+        file</p>
+</div>
+
+<div class="card workstation-card" id="inputContainer">
+    <div class="workstation-panel">
+        <div class="upload-area un-gap-md" id="uploadArea">
+            <div class="upload-icon mb-sm">
+                <app-icon name="file-html"></app-icon>
+            </div>
+            <div class="upload-text">Drop an HTML file here</div>
+            <div class="upload-subtext">or click to browse</div>
+        </div>
+        <input type="file" id="fileInput" accept=".html,.htm" style="display: none;">
+        <div class="file-list">
+            <div class="file-info-bar d-none" id="fileInfo">
+                <span>📄 <span id="fileNameDisplay"></span></span>
+                <button type="button" class="btn-clear" id="clearFileBtn" title="Clear">✕</button>
+            </div>
+        </div>
+
+        <div class="paste-area-container stack-sm" id="pasteAreaContainer">
+            <textarea id="pasteArea" class="paste-area" placeholder="Or paste HTML code here..."></textarea>
+        </div>
+    </div>
+    <div class="workstation-controls flex-between">
+        <button id="extractBtn" class="btn btn-primary" disabled>Extract Blocks</button>
+        <button id="resetInputBtn" class="btn btn-secondary" disabled>Reset</button>
+    </div>
+</div>
+
+<div class="card workstation-card card-glow" id="resultsContainer" style="display: none;">
+    <div class="workstation-panel">
+        <div class="flex-between items-center mb-lg">
+            <h2 class="card-title mb-0">Extraction Results</h2>
+            <button class="btn btn-primary" id="downloadZipBtn">Download All (.zip)</button>
+        </div>
+
+        <div class="card card-emphasis stats-panel text-center mb-lg" id="stats"></div>
+
+        <!-- Output Options -->
+        <div class="options-panel mb-lg">
+
+
+            <label class="checkbox-wrapper" title="Organizes the generated files (HTML, CSS, JS) into separate folders inside the downloaded ZIP for better project structure.">
+                <input type="checkbox" id="useFoldersCheckbox" checked="">
+                <span class="checkbox-custom"></span>
+                <div class="checkbox-label-content">
+                    <span class="checkbox-title">Organize in folders</span>
+                </div>
+            </label>
+        </div>
+
+        <div class="tabs-container">
+            <button class="tab active" data-tab="html">Cleaned HTML</button>
+            <button class="tab" data-tab="css">Extracted CSS</button>
+            <button class="tab" data-tab="js">Extracted JS</button>
+            <button class="tab" data-tab="preview">Live Preview</button>
+        </div>
+
+        <div class="tab-content active" id="html-tab">
+            <textarea id="htmlOutput" readonly></textarea>
+            <div class="mt-lg horizontal-line stack-sm">
+                <div class="field-label text-start">HTML File Name:</div>
+                <div class="flex-row-gap-sm">
+                    <input type="text" id="htmlFilename" class="input-field input-small text-start" value="index.cleaned.html">
+                    <button class="btn btn-primary" id="downloadHtmlBtn">Download HTML</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="tab-content" id="css-tab">
+            <textarea id="cssOutput" readonly=""></textarea>
+            <div class="mt-lg horizontal-line stack-sm">
+                <div class="field-label text-start">CSS File Name:</div>
+                <div class="flex-row-gap-sm">
+                    <input type="text" id="cssFilename" class="input-field input-small text-start" value="style.css">
+                    <button class="btn btn-primary" id="downloadCssBtn">Download CSS</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="tab-content" id="js-tab">
+            <textarea id="jsOutput" readonly=""></textarea>
+            <div class="mt-lg horizontal-line stack-sm">
+                <div class="field-label text-start">JavaScript File Name:</div>
+                <div class="flex-row-gap-sm">
+                    <input type="text" id="jsFilename" class="input-field input-small text-start" value="main.js">
+                    <button class="btn btn-primary" id="downloadJsBtn">Download JS</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="tab-content" id="preview-tab">
+            <div class="preview-container theme-dark" id="previewContainer">
+                <button class="preview-theme-toggle" id="togglePreviewTheme" title="Change background (may be overridden)">
+                    <app-icon name="theme-toggle" size="16px"></app-icon>
+                </button>
+                <iframe id="livePreview" class="preview-iframe" title="Live Preview"></iframe>
+            </div>
+        </div>
+    </div>
+</div>

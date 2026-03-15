@@ -1,0 +1,87 @@
+<div class="tool-header">
+    <h1>
+        <img src="images/tools/html-merger.webp" alt="">
+        HTML Merger
+    </h1>
+    <p>Combine an HTML file with multiple CSS and JS files into a single, standalone HTML document</p>
+</div>
+
+<div class="card workstation-card">
+    <div class="workstation-grid items-3">
+        <div class="workstation-panel" id="htmlPanel">
+            <h2 class="card-title mb-md"><span>📄</span> HTML (Base File)</h2>
+            <div class="upload-area" id="htmlDropZone">
+                <div class="upload-icon mb-sm">
+                    <app-icon name="file-html"></app-icon>
+                </div>
+                <div class="upload-text">Drop a single .html file here </div>
+                <div class="upload-subtext">or click to browse</div>
+            </div>
+            <div class="file-list" id="htmlFileList"></div>
+            <input type="file" id="htmlFileInput" accept=".html" style="display:none;">
+        </div>
+
+        <div class="workstation-panel" id="cssPanel">
+            <h2 class="card-title mb-md"><span>🎨</span> CSS (Styles)</h2>
+            <div class="upload-area" id="cssDropZone">
+                <div class="upload-icon mb-sm">
+                    <app-icon name="file-css"></app-icon>
+                </div>
+                <div class="upload-text">Drop .css files here</div>
+                <div class="upload-subtext">or click to browse</div>
+            </div>
+            <div class="file-list" id="cssFileList"></div>
+            <input type="file" id="cssFileInput" accept=".css" multiple="" style="display:none;">
+        </div>
+
+        <div class="workstation-panel" id="jsPanel">
+            <h2 class="card-title mb-md"><span>📜</span> JavaScript (Scripts)</h2>
+            <div class="upload-area" id="jsDropZone">
+                <div class="upload-icon mb-sm">
+                    <app-icon name="file-js"></app-icon>
+                </div>
+                <div class="upload-text">Drop .js files here</div>
+                <div class="upload-subtext">or click to browse</div>
+            </div>
+            <div class="file-list" id="jsFileList"></div>
+            <input type="file" id="jsFileInput" accept=".js" multiple="" style="display:none;">
+        </div>
+    </div>
+    <div class="workstation-controls flex-between">
+        <button class="btn btn-primary" id="mergeBtn" disabled>Merge Files</button>
+        <button class="btn btn-secondary" id="resetBtn" disabled>Reset</button>
+    </div>
+</div>
+
+<div class="card workstation-card card-glow" id="outputContainer" style="display: none;">
+    <div class="workstation-panel">
+        <div class="flex-between items-center mb-lg">
+            <h2 class="card-title mb-0">Merge Results</h2>
+            <div class="flex-row-gap-sm">
+                <button class="btn btn-primary" id="downloadBtn">Download File</button>
+                <button class="btn btn-tertiary" id="copyBtn">Copy Code</button>
+            </div>
+        </div>
+
+        <div class="card card-emphasis stats-panel text-center mb-lg" id="stats"></div>
+
+        <div class="tabs-container">
+            <button class="tab active" data-tab="code">Merged Code</button>
+            <button class="tab" data-tab="preview">Live Preview</button>
+        </div>
+
+        <div class="tab-content active" id="code-tab">
+            <textarea id="mergedCode" readonly="" placeholder="Your merged HTML code will appear here..."></textarea>
+        </div>
+
+        <div class="tab-content" id="preview-tab">
+            <div class="preview-container theme-dark" id="previewContainer">
+                <button class="preview-theme-toggle" id="togglePreviewTheme"
+                    title="Change background (may be overridden)">
+                    <app-icon name="theme-toggle" size="16px"></app-icon>
+                </button>
+                <iframe id="livePreview" class="preview-iframe" title="Live Preview"></iframe>
+            </div>
+        </div>
+    </div>
+</div>

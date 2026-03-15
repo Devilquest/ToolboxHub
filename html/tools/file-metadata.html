@@ -1,0 +1,77 @@
+<div class="tool-header">
+    <h1><img src="images/tools/file-metadata.webp" alt="">File Metadata Viewer</h1>
+    <p>View hidden metadata from images, audio, video, documents, and more</p>
+    <div class="supported-formats mt-sm">
+        <span class="app-badge app-badge-primary">🖼️ Images</span>
+        <span class="app-badge app-badge-primary">📄 Documents</span>
+        <span class="app-badge app-badge-primary">🎵 Audio</span>
+        <span class="app-badge app-badge-primary">🎬 Video</span>
+        <span class="app-badge app-badge-primary">📦 Archives</span>
+        <span class="app-badge app-badge-primary">📁 Any File</span>
+    </div>
+</div>
+
+<div class="card workstation-card card-glow text-center" id="metadataInputCard">
+    <div class="workstation-panel stack-md">
+        <div class="upload-area un-gap-md" id="uploadArea">
+            <div class="upload-icon mb-sm">
+                <app-icon name="file-upload"></app-icon>
+            </div>
+            <div class="upload-text">Drop any file here</div>
+            <div class="upload-subtext">or click to browse</div>
+        </div>
+        <input type="file" id="fileInput" style="display: none;">
+        <div id="filePreview" class="un-gap-md hidden"></div>
+    </div>
+    <div class="workstation-controls flex-end" id="workstationControls" style="display: none;">
+        <button class="btn btn-secondary" id="resetBtn">Reset</button>
+    </div>
+</div>
+
+<div class="card workstation-card card-glow" id="metadataContainer" style="display: none;">
+    <div class="workstation-panel">
+        <div class="flex-between mb-lg">
+            <h2 class="card-title mb-md">File Details &amp; Metadata</h2>
+            <div class="flex-row-gap-sm">
+                <button class="btn btn-primary" id="downloadBtn">
+                    Download JSON
+                </button>
+                <button class="btn btn-primary" id="downloadCsvBtn">
+                    Download CSV
+                </button>
+            </div>
+        </div>
+
+        <div class="card card-emphasis stats-panel mb-lg" id="metadataStats"></div>
+
+        <div class="tabs-container">
+            <button class="tab active" data-tab="formatted">Formatted View</button>
+            <button class="tab" data-tab="raw">Raw JSON</button>
+            <button class="tab" data-tab="hex">Hex View</button>
+        </div>
+
+        <div class="tab-content active" id="formatted-tab">
+            <div id="metadataContent"></div>
+        </div>
+
+        <div class="tab-content" id="raw-tab">
+            <div class="flex-between mt-lg mb-sm">
+                <h3 class="card-title mb-0 text-start">📄 Raw Metadata (JSON)</h3>
+                <button class="btn btn-tertiary btn-sm" id="copyRawBtn">Copy JSON</button>
+            </div>
+            <div class="raw-metadata">
+                <textarea class="raw-metadata-content" id="rawContent" readonly></textarea>
+            </div>
+        </div>
+
+        <div class="tab-content" id="hex-tab">
+            <div class="flex-between mt-lg mb-sm">
+                <h3 class="card-title mb-0 text-start">🔢 File Header (Hex View)</h3>
+                <button class="btn btn-tertiary btn-sm" id="copyHexBtn">Copy Hex String</button>
+            </div>
+            <div class="raw-metadata">
+                <textarea class="raw-metadata-content" id="hexContent" readonly></textarea>
+            </div>
+        </div>
+    </div>
+</div>

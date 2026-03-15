@@ -1,0 +1,46 @@
+/* ==============================================
+   ASPECT RATIO TOOL
+   ============================================== */
+.preset-container,
+.ratio-container,
+.dimensions-container {
+    width: 100%;
+    max-width: 500px;
+}
+
+.ratio-separator {
+    font-weight: bold;
+    font-size: 2rem;
+    color: var(--neon-primary);
+    text-shadow: var(--glow-xs);
+}
+
+.dimensions-container {
+    width: 100%;
+    max-width: 650px;
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-md);
+}
+
+.control-buttons {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-md);
+}
+
+/* ==============================================
+   MEDIA QUERIES
+   ============================================== */
+@media (max-width: 768px) {
+    .dimensions-container {
+        grid-template-columns: 1fr;
+        gap: var(--space-md);
+    }
+
+    .control-buttons {
+        flex-direction: column;
+        gap: var(--space-sm);
+    }
+}

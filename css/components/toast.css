@@ -1,0 +1,138 @@
+/* ==============================================
+   TOAST NOTIFICATIONS
+   ============================================== */
+#toastContainer {
+    width: 380px;
+    position: fixed;
+    top: 25px;
+    right: 25px;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    pointer-events: none;
+}
+
+.toast {
+    border: 1px solid var(--glass-border);
+    padding: 14px 40px 14px 16px;
+    width: 100%;
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-sm);
+    overflow: hidden;
+    pointer-events: auto;
+    font-weight: 500;
+    font-size: 0.9rem;
+    line-height: 1.45;
+    color: var(--text-primary);
+    border-radius: var(--radius-sm);
+    background: var(--bg-glass);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    animation: toastIn 0.35s ease forwards;
+}
+
+.toast-icon {
+    width: 24px;
+    height: auto;
+    flex-shrink: 0;
+}
+
+.toast-message {
+    flex: 1;
+    word-break: break-word;
+}
+
+.toast.removing {
+    animation: toastOut 0.3s ease forwards;
+}
+
+.toast-close {
+    border: none;
+    padding: 4px;
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    font-size: 1.1rem;
+    line-height: 1;
+    color: var(--text-muted);
+    background: none;
+    cursor: pointer;
+    transition: color var(--transition-fast);
+}
+
+.toast-close:hover {
+    color: var(--text-heading);
+}
+
+.toast .toast-progress {
+    height: 3px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    display: block !important;
+    border-radius: 0 0 var(--radius-sm) var(--radius-sm);
+    animation: toastProgress var(--toast-duration, 4s) linear forwards;
+}
+
+/* ==============================================
+   TOAST TYPES & GLOWS
+   ============================================== */
+.toast-error {
+    border-color: color-mix(in srgb, #ff6b6b 40%, transparent);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35), 0 0 20px color-mix(in srgb, #ff6b6b 25%, transparent);
+}
+
+.toast-error .toast-icon {
+    color: #ff6b6b;
+    filter: drop-shadow(0 0 6px color-mix(in srgb, #ff6b6b 80%, transparent));
+}
+
+.toast-error .toast-progress {
+    background: #ff6b6b;
+}
+
+.toast-success {
+    border-color: color-mix(in srgb, var(--neon-accent) 40%, transparent);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35), 0 0 20px color-mix(in srgb, var(--neon-accent) 25%, transparent);
+}
+
+.toast-success .toast-icon {
+    color: var(--neon-accent);
+    filter: drop-shadow(0 0 6px color-mix(in srgb, var(--neon-accent) 80%, transparent));
+}
+
+.toast-success .toast-progress {
+    background: var(--neon-accent);
+}
+
+.toast-warning {
+    border-color: color-mix(in srgb, #ffc107 40%, transparent);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35), 0 0 20px color-mix(in srgb, #ffc107 25%, transparent);
+}
+
+.toast-warning .toast-icon {
+    color: #ffc107;
+    filter: drop-shadow(0 0 6px color-mix(in srgb, #ffc107 80%, transparent));
+}
+
+.toast-warning .toast-progress {
+    background: #ffc107;
+}
+
+.toast-info {
+    border-color: color-mix(in srgb, var(--neon-primary) 40%, transparent);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35), 0 0 20px color-mix(in srgb, var(--neon-primary) 25%, transparent);
+}
+
+.toast-info .toast-icon {
+    color: var(--neon-primary);
+    filter: drop-shadow(0 0 6px color-mix(in srgb, var(--neon-primary) 80%, transparent));
+}
+
+.toast-info .toast-progress {
+    background: var(--neon-primary);
+}

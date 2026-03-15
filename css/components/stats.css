@@ -1,0 +1,91 @@
+/* ==============================================
+   STATISTICS PANEL
+   ============================================== */
+.stats-panel {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: var(--space-md);
+    text-align: center;
+}
+
+.stat-item {
+    border: 1px solid color-mix(in srgb, var(--neon-primary) 10%, transparent);
+    padding: 20px 10px;
+    min-width: 140px;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: var(--space-sm);
+    border-radius: var(--radius);
+    background: color-mix(in srgb, var(--neon-primary) 6%, transparent);
+    transition: all var(--transition);
+    animation: statAppear 0.5s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+.stat-item:hover {
+    border-color: color-mix(in srgb, var(--neon-primary) 30%, transparent);
+    transform: translateY(-4px);
+    background: color-mix(in srgb, var(--neon-primary) 10%, transparent);
+    box-shadow: var(--glow-xs);
+}
+
+.stat-value {
+    font-weight: 700;
+    font-size: 2.4rem;
+    font-family: var(--font-sans);
+    line-height: 1;
+    color: var(--neon-primary);
+    text-shadow: var(--glow-xs);
+}
+
+.stat-label {
+    font-weight: 600;
+    font-size: 0.75rem;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+}
+
+.stat-label-text {
+    max-width: 160px;
+}
+
+.stat-item:nth-child(1) {
+    animation-delay: 0.05s;
+}
+
+.stat-item:nth-child(2) {
+    animation-delay: 0.10s;
+}
+
+.stat-item:nth-child(3) {
+    animation-delay: 0.15s;
+}
+
+.stat-item:nth-child(4) {
+    animation-delay: 0.20s;
+}
+
+.stat-item:nth-child(5) {
+    animation-delay: 0.25s;
+}
+
+/* ==============================================
+   MEDIA QUERIES
+   ============================================== */
+@media (max-width: 576px) {
+    .stats-panel {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .stats-panel>div {
+        width: 100%;
+        flex: 1 1 100%;
+    }
+}

@@ -1,0 +1,50 @@
+/* ==============================================
+   LOADER COMPONENT
+   ============================================== */
+.loading {
+    padding: var(--space-xl);
+    width: 100%;
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: var(--space-md);
+    grid-column: 1 / -1;
+}
+
+.loader {
+    width: 40px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 4px;
+    --base-opacity: 0.1;
+}
+
+.loader span {
+    width: 10px;
+    height: 10px;
+    background: var(--neon-primary);
+    --delay: 0.5s;
+    opacity: var(--base-opacity);
+    animation: onoff 1.5s infinite;
+    animation-delay: var(--delay);
+}
+
+.loader span:nth-child(1),
+.loader span:nth-child(3),
+.loader span:nth-child(7),
+.loader span:nth-child(9) {
+    --delay: 0.2s;
+}
+
+.loader span:nth-child(5) {
+    --delay: 0.8s;
+}
+
+.loading span {
+    font-weight: 500;
+    font-size: 0.95rem;
+    letter-spacing: 0.5px;
+    color: var(--text-muted);
+}

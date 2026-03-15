@@ -1,0 +1,191 @@
+/* ==============================================
+   TAX CALCULATOR TOOL
+   ============================================== */
+.tax-controls-bar {
+    border: 1px solid var(--glass-border);
+    padding: var(--space-md) var(--space-lg);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: var(--radius);
+    background: var(--bg-input);
+}
+
+.tax-results-panel {
+    border: 1px solid color-mix(in srgb, var(--neon-primary) 15%, transparent);
+    padding: var(--space-lg);
+    border-radius: var(--radius);
+    background: color-mix(in srgb, var(--neon-primary) 4%, transparent);
+}
+
+.tax-results-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-lg);
+}
+
+.tax-result-value {
+    font-weight: 700;
+    font-size: 1.6rem;
+    font-family: var(--font-mono);
+    word-break: break-all;
+}
+
+.tax-result-value.tax-color {
+    color: #ff6b6b;
+    text-shadow: 0 0 8px rgba(255, 107, 107, 0.3);
+}
+
+.tax-result-value.net-color {
+    color: var(--neon-accent);
+    text-shadow: 0 0 8px color-mix(in srgb, var(--neon-accent) 30%, transparent);
+}
+
+.tax-result-label {
+    margin-bottom: var(--space-xs);
+    font-size: 0.88rem;
+    color: var(--text-muted);
+}
+
+.tax-effective-rate {
+    margin-top: var(--space-xs);
+    font-size: 0.78rem;
+    color: var(--text-muted);
+}
+
+/* ==============================================
+   BRACKET EDITOR
+   ============================================== */
+.bracket-row {
+    border: 1px solid var(--glass-border);
+    padding: var(--space-md);
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    align-items: end;
+    gap: var(--space-sm);
+    border-radius: var(--radius-sm);
+    background: var(--bg-input);
+    transition: border-color var(--transition);
+}
+
+.bracket-row:hover {
+    border-color: color-mix(in srgb, var(--neon-primary) 30%, transparent);
+}
+
+.bracket-row label {
+    margin-bottom: var(--space-xs);
+    font-size: 0.75rem;
+    text-align: left;
+    color: var(--text-muted);
+}
+
+.bracket-row .input-field {
+    height: 42px;
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+.bracket-row .input-field:disabled {
+    opacity: 0.4;
+}
+
+.bracket-row .btn-clear {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    z-index: 2;
+}
+
+.bracket-rate .input-field {
+    font-weight: 700;
+    color: var(--neon-primary);
+}
+
+/* ==============================================
+   BREAKDOWN LIST
+   ============================================== */
+.tax-breakdown-header {
+    font-weight: 700;
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+}
+
+.tax-breakdown-label {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    color: var(--text-primary);
+}
+
+#taxBreakdownList .data-row-value{
+    font-size: 1rem;
+}
+
+.tax-breakdown-base {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+.tax-divider {
+    border: none;
+    border-top: 2px solid var(--glass-border);
+    margin: var(--space-md) 0;
+}
+
+.collapse-status-text {
+    padding: 4px 10px;
+    font-weight: 600;
+    font-size: 0.82rem;
+    color: var(--neon-primary);
+    border-radius: var(--radius-sm);
+    background: color-mix(in srgb, var(--neon-primary) 10%, transparent);
+    transition: all var(--transition-fast);
+}
+
+.clickable:hover .collapse-status-text {
+    background: color-mix(in srgb, var(--neon-primary) 20%, transparent);
+    box-shadow: 0 0 10px color-mix(in srgb, var(--neon-primary) 15%, transparent);
+}
+
+#taxBracketsCollapsible {
+    display: grid;
+    grid-template-rows: 1fr;
+    overflow: hidden;
+    opacity: 1;
+    transition: grid-template-rows 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+        opacity 0.3s ease,
+        margin 0.4s ease;
+}
+
+.collapsible-wrapper {
+    min-height: 0;
+}
+
+.collapsed #taxBracketsCollapsible {
+    grid-template-rows: 0fr;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* ==============================================
+   MEDIA QUERIES
+   ============================================== */
+@media (max-width: 768px) {
+    .tax-results-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .bracket-row {
+        grid-template-columns: 1fr 1fr;
+        gap: var(--space-xs);
+    }
+
+    .bracket-row .bracket-rate {
+        grid-column: 1 / -1;
+    }
+}

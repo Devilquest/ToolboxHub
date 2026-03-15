@@ -1,0 +1,136 @@
+<div class="tool-header">
+    <h1><img src="images/tools/tax-calculator.webp" alt="">Tax Calculator</h1>
+    <p>Calculate capital gains and income taxes with flat or progressive bracket rates</p>
+</div>
+
+<div class="card workstation-card card-glow glow-fixed">
+    <div class="workstation-panel stack-lg">
+
+        <!-- Mode Tabs -->
+        <div class="tabs-container">
+            <button class="tab active" data-tab="tax-basic" id="taxTabBasic">Basic Mode</button>
+            <button class="tab" data-tab="tax-advanced" id="taxTabAdvanced">Advanced Mode</button>
+        </div>
+
+        <!-- Reverse Toggle -->
+        <div class="tax-controls-bar">
+            <label class="checkbox-wrapper">
+                <input type="checkbox" id="taxReverseToggle" checked="">
+                <span class="checkbox-custom"></span>
+                <div class="checkbox-label-content">
+                    <span class="checkbox-title">Calculate from Net Amount</span>
+                </div>
+            </label>
+        </div>
+
+        <!-- Main Amount Input (Visible in both modes) -->
+        <div class="stack-sm tax-main-input">
+            <label id="taxMainInputLabel">Gross Amount (€)</label>
+            <div class="numeric-input-wrapper">
+                <input type="text" id="taxMainAmount" class="input-field" placeholder="0.00" step="any">
+                <div class="input-step-controls">
+                    <button type="button" class="input-step-btn up" data-id="taxMainAmount" aria-label="Increase">
+                        <app-icon name="chevron-up"></app-icon>
+                    </button>
+                    <button type="button" class="input-step-btn down" data-id="taxMainAmount" aria-label="Decrease">
+                        <app-icon name="chevron-down"></app-icon>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Basic Mode Rate (Visible only in Basic Mode) -->
+        <div id="tax-basic-tab" class="tab-content active">
+            <div class="stack-sm" id="taxBasicRateContainer">
+                <label>Tax Rate (%)</label>
+                <div class="numeric-input-wrapper">
+                    <input type="text" id="taxBasicRate" class="input-field" placeholder="19" step="any">
+                    <div class="input-step-controls">
+                        <button type="button" class="input-step-btn up" data-id="taxBasicRate" aria-label="Increase">
+                            <app-icon name="chevron-up"></app-icon>
+                        </button>
+                        <button type="button" class="input-step-btn down" data-id="taxBasicRate" aria-label="Decrease">
+                            <app-icon name="chevron-down"></app-icon>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Results Panel (Always visible below inputs) -->
+        <div class="tax-results-panel">
+            <div class="tax-results-grid">
+                <div>
+                    <div class="tax-result-label">Total Tax to Pay</div>
+                    <div class="tax-result-value tax-color" id="taxResTax">0,00 €</div>
+                    <div class="tax-effective-rate" id="taxResEffective">Effective Rate: 0.00%</div>
+                </div>
+                <div>
+                    <div class="tax-result-label" id="taxResResultLabel">Net Income</div>
+                    <div class="tax-result-value net-color" id="taxResMain">0,00 €</div>
+                </div>
+            </div>
+
+            <!-- Breakdown Divider -->
+            <hr class="tax-divider hidden" id="taxBreakdownDivider">
+
+            <!-- Breakdown -->
+            <div id="taxBreakdownContainer" class="hidden">
+                <div class="tax-breakdown-header">Bracket Breakdown</div>
+                <div id="taxBreakdownList"></div>
+            </div>
+        </div>
+
+        <!-- Advanced Mode Editor (Visible only in Advanced Mode) -->
+        <div id="tax-advanced-tab" class="tab-content">
+            <div id="taxBracketsContainer">
+                <div class="card">
+                    <div class="flex-between clickable" id="taxCollapseHeader">
+                        <h3 class="card-title mb-0">Configure Tax Brackets</h3>
+                        <div class="collapse-status-text" id="taxCollapseStatus">Click to Edit</div>
+                    </div>
+
+                    <div id="taxBracketsCollapsible" class="mt-md">
+                        <div class="collapsible-wrapper">
+                            <div class="stack-md">
+                                <div class="stack-sm" id="taxBracketsList"></div>
+                                <div class="flex-row-gap-sm">
+                                    <button class="btn btn-primary flex-1" id="taxAddBracket">
+                                        + Add Bracket
+                                    </button>
+                                    <button class="btn btn-secondary" id="taxResetBrackets">
+                                        Reset to Default
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="card card-emphasis text-center stack-md">
+    <h3 class="card-title mb-md">⚙️ How it works</h3>
+    <div class="stack-sm">
+        <div class="field-label">Basic Mode</div>
+        <p class="content-box content-box-formula">Tax = Gross Amount · (Rate / 100)</p>
+        <p class="content-box content-box-formula">Net = Gross Amount - Tax</p>
+    </div>
+    <div class="stack-sm">
+        <div class="field-label">Advanced Mode (Progressive)</div>
+        <p class="content-box content-box-formula">Each bracket taxes only the income within its range</p>
+        <p class="content-box content-box-formula">Total Tax = Σ (Bracket Amount · Bracket Rate)</p>
+    </div>
+    <p class="text-secondary mt-sm disclaimer-text">Calculations run locally. Results depend on
+        user inputs and may not reflect local tax law. Verify with a tax professional.</p>
+</div>
+
+<div class="card stack-md">
+    <h3 class="card-title mb-md">📝 Usage Examples</h3>
+    <div id="taxUsageExamplesContainer" class="stack-md">
+        <!-- Javascript will render examples here based on global currency format -->
+    </div>
+</div>

@@ -1,0 +1,86 @@
+/* ==============================================
+   TOOLTIP COMPONENT
+   ============================================== */
+[data-tooltip] {
+    position: relative;
+    cursor: help;
+}
+
+[data-tooltip]::after {
+    border: 1px solid var(--glass-border);
+    padding: 8px 12px;
+    width: max-content;
+    max-width: 250px;
+    position: absolute;
+    bottom: 150%;
+    left: 50%;
+    z-index: 100;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    font-size: 0.75rem;
+    white-space: normal;
+    line-height: 1.5;
+    text-align: center;
+    color: var(--text-primary);
+    border-radius: var(--radius-sm);
+    background: #1a1a2e;
+    box-shadow: 0 10px 40px -5px rgba(0, 0, 0, 0.8),
+        0 0 20px rgba(0, 0, 0, 0.4),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+    transform: translateX(-50%);
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    content: attr(data-tooltip);
+}
+
+[data-tooltip]::before {
+    border-style: solid;
+    border-width: 8px 8px 0 8px;
+    border-color: #1a1a2e transparent transparent transparent;
+    position: absolute;
+    bottom: 130%;
+    left: 50%;
+    z-index: 101;
+    opacity: 0;
+    visibility: hidden;
+    filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.5));
+    transform: translateX(-50%);
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    content: "";
+}
+
+[data-tooltip]:hover::after {
+    bottom: 140%;
+    opacity: 1;
+    visibility: visible;
+}
+
+[data-tooltip]:hover::before {
+    bottom: 125%;
+    opacity: 1;
+    visibility: visible;
+}
+
+.info-icon {
+    margin-left: 6px;
+    border: 1px solid color-mix(in srgb, var(--text-muted) 30%, transparent);
+    width: 18px;
+    height: 18px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 11px;
+    color: var(--text-muted);
+    cursor: default;
+    border-radius: 50%;
+    background: color-mix(in srgb, var(--text-muted) 10%, transparent);
+    transition: all var(--transition-fast);
+}
+
+.info-icon:hover {
+    border-color: var(--neon-primary);
+    color: var(--neon-primary);
+    background: color-mix(in srgb, var(--neon-primary) 15%, transparent);
+    box-shadow: var(--glow-xxs);
+}

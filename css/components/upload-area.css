@@ -1,0 +1,253 @@
+/* ==============================================
+   UPLOAD AREA & DROPZONE
+   ============================================== */
+.upload-area {
+    border: 1.5px dashed color-mix(in srgb, var(--neon-primary) 35%, transparent);
+    padding: 35px 15px;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+    cursor: pointer;
+    border-radius: var(--radius);
+    background: color-mix(in srgb, var(--neon-primary) 3%, transparent);
+    transition: all var(--transition);
+}
+
+.upload-area::before {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    background: radial-gradient(circle at center, color-mix(in srgb, var(--neon-primary) 6%, transparent) 0%, transparent 70%);
+    transition: opacity var(--transition);
+    content: '';
+}
+
+.upload-area:hover::before {
+    opacity: 1;
+}
+
+.upload-area:hover {
+    border-color: var(--neon-primary);
+    transform: translateY(-2px);
+    box-shadow: var(--glow-xs);
+}
+
+/* ==============================================
+   DRAG & DROP STATE
+   ============================================== */
+.card.dragover,
+.upload-area.dragover {
+    border-color: var(--neon-primary) !important;
+    border-style: dashed !important;
+    transform: scale(1.02);
+    background: color-mix(in srgb, var(--neon-primary) 5%, transparent) !important;
+    box-shadow: var(--glow-md) !important;
+}
+
+.upload-icon {
+    margin: 0 auto;
+    width: 90px;
+    height: 90px;
+}
+
+.upload-icon svg,
+.upload-icon app-icon {
+    width: 100%;
+    height: 100%;
+    display: block;
+    color: var(--neon-primary);
+    opacity: 0.7;
+    user-select: none;
+    animation: float 3s ease-in-out infinite;
+}
+
+.upload-text {
+    font-weight: 500;
+    font-size: 1.35rem;
+    color: var(--text-primary);
+}
+
+.upload-subtext {
+    font-size: 1rem;
+    color: var(--text-muted);
+}
+
+/* ==============================================
+   STATE: ENTRANCE ANIMATIONS
+   ============================================== */
+.upload-area:not(.hidden) .upload-icon,
+.upload-area:not(.hidden) .upload-text,
+.upload-area:not(.hidden) .upload-subtext {
+    animation: slideUpFade 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+.upload-area:not(.hidden) .upload-icon {
+    animation-delay: 0.1s;
+}
+
+.upload-area:not(.hidden) .upload-text {
+    animation-delay: 0.2s;
+}
+
+.upload-area:not(.hidden) .upload-subtext {
+    animation-delay: 0.25s;
+}
+
+.upload-area.hidden {
+    margin: 0;
+    border-color: transparent;
+    padding: 0 15px;
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: scale(1);
+    transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+        opacity 0.3s ease,
+        padding 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+        transform 0.35s ease,
+        border-color 0.3s ease,
+        visibility 0.4s !important;
+}
+
+.upload-area:not(.hidden) {
+    max-height: 600px;
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1) translateY(0);
+    transition: max-height 0.45s cubic-bezier(0.4, 0, 0.2, 1),
+        opacity 0.3s ease 0.1s,
+        padding 0.45s cubic-bezier(0.4, 0, 0.2, 1),
+        transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1),
+        box-shadow 0.35s ease;
+}
+
+@starting-style {
+    .upload-area:not(.hidden) {
+        margin: 0;
+        border-color: transparent;
+        padding: 0 15px;
+        max-height: 0;
+        opacity: 0;
+        transform: scale(0.92) translateY(-15px);
+    }
+}
+
+/* ==============================================
+   ERROR & WARNING STATES
+   ============================================== */
+.upload-area.error,
+.input-field.error,
+.textarea.error {
+    border-color: #f44336 !important;
+    background: rgba(244, 67, 54, 0.05) !important;
+    box-shadow: 0 0 15px rgba(244, 67, 54, 0.2) !important;
+    animation: shake 0.5s cubic-bezier(.36, .07, .19, .97) both;
+}
+
+.upload-area.warning,
+.input-field.warning,
+.textarea.warning {
+    border-color: #ffc107 !important;
+    background: rgba(255, 193, 7, 0.05) !important;
+    box-shadow: 0 0 15px rgba(255, 193, 7, 0.2) !important;
+    animation: shake 0.5s cubic-bezier(.36, .07, .19, .97) both;
+}
+
+.upload-area.error .upload-icon,
+.upload-area.error .upload-icon app-icon {
+    color: #f44336 !important;
+    opacity: 1;
+}
+
+.upload-area.error .upload-text {
+    color: #f44336;
+}
+
+.upload-area.error .upload-subtext {
+    color: #c62828;
+}
+
+.upload-area.warning .upload-icon,
+.upload-area.warning .upload-icon app-icon {
+    color: #ffc107 !important;
+    opacity: 1;
+}
+
+.upload-area.warning .upload-text {
+    color: #ffc107;
+}
+
+.upload-area.warning .upload-subtext {
+    color: #c69100;
+}
+
+/* ==============================================
+   FILE INFO BAR
+   ============================================== */
+.file-info-bar {
+    border: 1px solid color-mix(in srgb, var(--neon-primary) 20%, transparent);
+    padding: 10px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.95rem;
+    color: var(--text-primary);
+    border-radius: var(--radius-sm);
+    background: color-mix(in srgb, var(--neon-primary) 6%, transparent);
+    transition: opacity 0.3s ease, transform 0.3s ease, max-height 0.3s ease, margin 0.3s ease, padding 0.3s ease, display 0.3s allow-discrete;
+}
+
+.file-info-bar.d-none {
+    display: none !important;
+    opacity: 0;
+}
+
+@starting-style {
+    .file-info-bar:not(.d-none) {
+        transform: translateY(-10px);
+        opacity: 0;
+    }
+}
+
+/* ==============================================
+   FILE LIST CONTAINER
+   ============================================== */
+.file-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+}
+
+.file-list:empty,
+.file-list:has(> .d-none:only-child) {
+    display: none;
+}
+
+/* ==============================================
+   WORKSTATION TEXTAREA BASE
+   ============================================== */
+.workstation-panel textarea {
+    border: 1px solid color-mix(in srgb, var(--neon-primary) 10%, transparent);
+    padding: 15px;
+    min-height: 100px;
+    flex-grow: 0;
+    flex-shrink: 0;
+    flex-basis: auto;
+    font-family: var(--font-mono);
+    color: var(--text-primary);
+    resize: none;
+    border-radius: var(--radius-sm);
+    background: var(--bg-input);
+    transition: flex-grow 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+        min-height 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+        background 0.3s ease,
+        border-color 0.3s ease;
+}
+
+.workstation-panel textarea.has-content {
+    min-height: 280px;
+    flex-grow: 1;
+}

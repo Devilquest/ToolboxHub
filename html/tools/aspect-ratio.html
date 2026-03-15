@@ -1,0 +1,147 @@
+<div class="tool-header">
+    <h1><img src="images/tools/aspect-ratio.webp" alt="">Aspect Ratio Calculator</h1>
+    <p>Calculate and convert aspect ratios for images and videos</p>
+</div>
+
+<div class="card workstation-card card-glow text-center">
+    <div class="workstation-panel items-center">
+        <h2 class="card-title mb-md">Enter Aspect Ratio and Dimensions</h2>
+
+        <div class="stack-md text-center preset-container">
+            <label>Common Aspect Ratios</label>
+            <select id="arPreset">
+                <option value="">Select a preset</option>
+                <option value="1:1">1:1 (Square)</option>
+                <option value="4:3">4:3 (Classic TV)</option>
+                <option value="3:4">3:4 (Vertical Classic)</option>
+                <option value="16:9">16:9 (HD)</option>
+                <option value="9:16">9:16 (Vertical HD)</option>
+                <option value="3:2">3:2 (Photo)</option>
+                <option value="2:3">2:3 (Vertical Photo)</option>
+                <option value="2:1">2:1 (Panorama)</option>
+                <option value="1:2">1:2 (Vertical Panorama)</option>
+            </select>
+        </div>
+
+        <div class="stack-md ratio-container">
+            <div class="field-label">Aspect Ratio (Width : Height)</div>
+            <div class="flex-row-gap">
+                <div class="numeric-input-wrapper">
+                    <input type="text" id="arWidth" class="input-field" placeholder="16" step="any" min="0">
+                    <div class="input-step-controls">
+                        <button type="button" class="input-step-btn up" data-id="arWidth" aria-label="Increase">
+                            <app-icon name="chevron-up"></app-icon>
+                        </button>
+                        <button type="button" class="input-step-btn down" data-id="arWidth" aria-label="Decrease">
+                            <app-icon name="chevron-down"></app-icon>
+                        </button>
+                    </div>
+                </div>
+                <span class="ratio-separator">:</span>
+                <div class="numeric-input-wrapper">
+                    <input type="text" id="arHeight" class="input-field" placeholder="9" step="any" min="0">
+                    <div class="input-step-controls">
+                        <button type="button" class="input-step-btn up" data-id="arHeight" aria-label="Increase">
+                            <app-icon name="chevron-up"></app-icon>
+                        </button>
+                        <button type="button" class="input-step-btn down" data-id="arHeight" aria-label="Decrease">
+                            <app-icon name="chevron-down"></app-icon>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-lg flex-row-gap dimensions-container">
+            <div class="stack-sm">
+                <label>Width</label>
+                <div class="numeric-input-wrapper">
+                    <input type="text" id="widthInput" class="input-field" placeholder="Enter width" step="any" min="0">
+                    <div class="input-step-controls">
+                        <button type="button" class="input-step-btn up" data-id="widthInput" aria-label="Increase">
+                            <app-icon name="chevron-up"></app-icon>
+                        </button>
+                        <button type="button" class="input-step-btn down" data-id="widthInput" aria-label="Decrease">
+                            <app-icon name="chevron-down"></app-icon>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="stack-sm">
+                <label>Height</label>
+                <div class="numeric-input-wrapper">
+                    <input type="text" id="heightInput" class="input-field" placeholder="Enter height" step="any"
+                        min="0">
+                    <div class="input-step-controls">
+                        <button type="button" class="input-step-btn up" data-id="heightInput" aria-label="Increase">
+                            <app-icon name="chevron-up"></app-icon>
+                        </button>
+                        <button type="button" class="input-step-btn down" data-id="heightInput" aria-label="Decrease">
+                            <app-icon name="chevron-down"></app-icon>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="workstation-controls flex-between">
+        <button id="calculateRatioBtn" class="btn btn-primary" disabled="">Calculate Aspect Ratio</button>
+        <div class="flex-row-gap-sm">
+            <button id="clearAspectBtn" class="btn btn-secondary" disabled="">Clear Aspect Ratio</button>
+            <button id="clearDimensionsBtn" class="btn btn-secondary" disabled="">Clear Dimensions</button>
+            <button id="clearAllBtn" class="btn btn-secondary" disabled="">Clear All</button>
+        </div>
+    </div>
+</div>
+
+<div class="card card-emphasis text-center stack-md">
+    <h3 class="card-title mb-md">⚙️ How it works</h3>
+
+    <div class="stack-sm">
+        <div class="field-label">To find a dimension:</div>
+        <p class="content-box content-box-formula">New Height = Width · (Aspect Ratio Height / Aspect Ratio Width)
+        </p>
+        <p class="content-box content-box-formula">New Width = Height · (Aspect Ratio Width / Aspect Ratio Height)
+        </p>
+    </div>
+
+    <div class="stack-sm">
+        <div class="field-label">To find the Aspect Ratio:</div>
+        <p class="content-box content-box-formula">GCD = Greatest Common Divisor(Width, Height)</p>
+        <p class="content-box content-box-formula">Aspect Ratio = (Width / GCD) : (Height / GCD)</p>
+    </div>
+
+    <p>Reference: <a class="default-hover" href="https://en.wikipedia.org/wiki/Aspect_ratio_(image)" target="_blank"
+            tabindex="-1">Wikipedia - Aspect Ratio</a></p>
+</div>
+
+<div class="card stack-md">
+    <h3 class="card-title mb-md">📝 Usage Examples</h3>
+    <div class="content-box content-box-example">
+        <strong>Find Dimension (Height):</strong> For a 16:9 ratio, if width is 1920, what is the height?
+        <div class="example-solution stack-xs mt-sm">
+            <div>Aspect Ratio (Width:Height) = 16:9</div>
+            <div>Width = 1920</div>
+            <div>Height = 1920 · (9 / 16) = <strong>1080</strong></div>
+        </div>
+    </div>
+    <div class="content-box content-box-example">
+        <strong>Find Dimension (Width):</strong> For a 4:5 ratio, if height is 1080, what is the width?
+        <div class="example-solution stack-xs mt-sm">
+            <div>Aspect Ratio (Width:Height) = 4:5</div>
+            <div>Height = 1080</div>
+            <div>Width = 1080 · (4 / 5) = <strong>864</strong></div>
+        </div>
+    </div>
+    <div class="content-box content-box-example">
+        <strong>Find Ratio:</strong> An image is 1920px wide and 1080px high. What is its aspect ratio?
+        <div class="example-solution stack-xs mt-sm">
+            <div>Width = 1920</div>
+            <div>Height = 1080</div>
+            <div><a class="default-hover" href="https://en.wikipedia.org/wiki/Greatest_common_divisor"
+                    title="Greatest common divisor" tabindex="-1">GCD</a> (1920, 1080) = 120</div>
+            <div>Ratio = (1920 / 120) : (1080 / 120) = <strong>16:9</strong></div>
+        </div>
+    </div>
+</div>

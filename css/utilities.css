@@ -1,0 +1,239 @@
+/* ==============================================
+   LAYOUT & SPACING UTILITIES
+   ============================================== */
+.center-block {
+    margin-right: auto !important;
+    margin-left: auto !important;
+}
+
+.d-none {
+    display: none !important;
+}
+
+.items-center {
+    align-items: center !important;
+}
+
+.items-start {
+    align-items: flex-start !important;
+}
+
+.center-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.flex-start {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.flex-end {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.flex-between {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hidden {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    border-color: transparent !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    max-height: 0 !important;
+    overflow: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+    transition: max-height 0.35s ease, opacity 0.25s ease, padding 0.35s ease, margin 0.35s ease, border-color 0.25s ease !important;
+}
+
+.un-gap-xs.hidden {
+    margin-bottom: calc(-1 * var(--space-xs)) !important;
+}
+
+.un-gap-sm.hidden {
+    margin-bottom: calc(-1 * var(--space-sm)) !important;
+}
+
+.un-gap-md.hidden {
+    margin-bottom: calc(-1 * var(--space-md)) !important;
+}
+
+.un-gap-lg.hidden {
+    margin-bottom: calc(-1 * var(--space-lg)) !important;
+}
+
+.un-gap-xl.hidden {
+    margin-bottom: calc(-1 * var(--space-xl)) !important;
+}
+
+/* ==============================================
+   STACKS
+   ============================================== */
+.stack-xs {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+}
+
+.stack-sm {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+}
+
+.stack-md {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+}
+
+.stack-lg {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+}
+
+.stack-xl {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xl);
+}
+
+/* ==============================================
+   HORIZONTAL RHYTHM
+   ============================================== */
+.flex-row-gap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: var(--space-md);
+}
+
+.flex-row-gap-sm {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: var(--space-sm);
+}
+
+.flex-1 {
+    flex: 1 !important;
+}
+
+.flex-2 {
+    flex: 2 !important;
+}
+
+.flex-none {
+    flex: none !important;
+}
+
+/* ==============================================
+   HARD MARGINS
+   ============================================== */
+.mt-xs {
+    margin-top: var(--space-xs) !important;
+}
+
+.mt-sm {
+    margin-top: var(--space-sm) !important;
+}
+
+.mt-md {
+    margin-top: var(--space-md) !important;
+}
+
+.mt-lg {
+    margin-top: var(--space-lg) !important;
+}
+
+.mt-xl {
+    margin-top: var(--space-xl) !important;
+}
+
+.mb-xs {
+    margin-bottom: var(--space-xs) !important;
+}
+
+.mb-sm {
+    margin-bottom: var(--space-sm) !important;
+}
+
+.mb-md {
+    margin-bottom: var(--space-md) !important;
+}
+
+.mb-lg {
+    margin-bottom: var(--space-lg) !important;
+}
+
+.mb-xl {
+    margin-bottom: var(--space-xl) !important;
+}
+
+.mb-0 {
+    margin-bottom: 0 !important;
+}
+
+/* ==============================================
+   TEXT ALIGNMENT
+   ============================================== */
+.text-start {
+    text-align: left !important;
+}
+
+.text-center {
+    text-align: center !important;
+}
+
+.text-end {
+    text-align: right !important;
+}
+
+/* ==============================================
+   GENERAL UTILITIES
+   ============================================== */
+.text-danger {
+    color: var(--neon-danger) !important;
+}
+
+.example-solution {
+    margin-left: 20px;
+    border-left: 2px solid color-mix(in srgb, var(--neon-primary) 30%, transparent);
+    padding-left: 15px;
+    font-family: var(--font-mono);
+    color: var(--text-secondary);
+}
+
+.text-truncate {
+    max-width: 100%;
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.w-100 {
+    width: 100% !important;
+}
+
+.disclaimer-text {
+    font-size: 0.9em;
+    opacity: 0.8;
+}

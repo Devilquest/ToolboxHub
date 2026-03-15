@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self';">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ToolboxHub | Private & Powerful Online Utilities</title>
+    <meta name="description" content="ToolboxHub: An all-in-one, private-first collection of powerful online utilities. Fast, browser-based tools for calculations, file metadata, CSS, and more. 100% secure and client-side only.">
+    <meta name="author" content="Devilquest">
+    <meta name="keywords" content="developer tools, web utilities, file metadata viewer, CSS compare, tax calculator, aspect ratio, HTML extractor, private tools, vanilla js">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://devilquest.github.io/ToolboxHub/">
+
+    <meta name="theme-color" content="#050505">
+
+    <link id="favicon" rel="icon" href="images/favicon.ico" type="image/x-icon">
+    
+    <script>
+        try {
+            const saved = localStorage.getItem('toolboxGlobalSettings');
+            if (saved) {
+                const parsed = JSON.parse(saved);
+                if (parsed.hasOwnProperty('animateBackground') && parsed.animateBackground === false) {
+                    document.documentElement.classList.add('static-bg');
+                }
+            }
+        } catch (e) {}
+    </script>
+
+    <style>
+        :root { --bg-deep: #050505; --neon-primary: #00d2ff; }
+        html, body { background: var(--bg-deep); background: linear-gradient(160deg, #050505 0%, #0a0a18 40%, #0d0d1a 100%); margin: 0; padding: 0; min-height: 100vh; }
+        #app-preloader { position: fixed; inset: 0; z-index: 10000; display: flex; flex-direction: column; align-items: center; justify-content: center; background: var(--bg-deep); background: linear-gradient(160deg, #050505 0%, #0a0a18 40%, #0d0d1a 100%); transition: opacity 0.5s ease, visibility 0.5s; }
+        #app-preloader::before { position: absolute; inset: 0; z-index: -1; pointer-events: none; background-image: linear-gradient(color-mix(in srgb, var(--neon-primary) 3%, transparent) 1px, transparent 1px), linear-gradient(90deg, color-mix(in srgb, var(--neon-primary) 3%, transparent) 1px, transparent 1px); background-size: 60px 60px; content: ''; animation: pl-grid-scroll 60s linear infinite; }
+        .pl-brand { font-family: 'Segoe UI', sans-serif; font-weight: 700; font-size: 2.5rem; letter-spacing: 0.5px; color: #ffffff; margin-bottom: 30px; animation: pl-float 3s ease-in-out infinite; }
+        .pl-brand .brand-accent { margin-left: 4px; border-radius: 6px; padding: 0 8px; color: #050505; background: var(--neon-primary); box-shadow: 0 0 15px var(--neon-primary); }
+        .pl-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; width: 48px; }
+        .pl-grid span { width: 12px; height: 12px; background: var(--neon-primary); opacity: 0.1; animation: pl-onoff 1.5s infinite; }
+        .pl-grid span:nth-child(1), .pl-grid span:nth-child(3), .pl-grid span:nth-child(7), .pl-grid span:nth-child(9) { animation-delay: 0.2s; }
+        .pl-grid span:nth-child(2), .pl-grid span:nth-child(4), .pl-grid span:nth-child(6), .pl-grid span:nth-child(8) { animation-delay: 0.5s; }
+        .pl-grid span:nth-child(5) { animation-delay: 0.8s; }
+        @keyframes pl-onoff { 0%, 100% { opacity: 0.1; box-shadow: none; } 50% { opacity: 1; box-shadow: 0 0 10px var(--neon-primary); } }
+        @keyframes pl-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+        @keyframes pl-grid-scroll { from { background-position: 0 0; } to { background-position: 0 600px; } }
+        body.app-loading>*:not(#app-preloader) { opacity: 0 !important; visibility: hidden !important; }
+        body.app-ready { overflow: auto !important; }
+        body.app-loading { overflow: hidden !important; }
+    </style>
+
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/components/sidebar.css">
+    <link rel="stylesheet" href="css/components/card.css">
+    <link rel="stylesheet" href="css/components/buttons.css">
+    <link rel="stylesheet" href="css/components/inputs.css">
+    <link rel="stylesheet" href="css/components/upload-area.css">
+    <link rel="stylesheet" href="css/components/tabs.css">
+    <link rel="stylesheet" href="css/components/stats.css">
+    <link rel="stylesheet" href="css/components/badges.css">
+    <link rel="stylesheet" href="css/components/data-row.css">
+    <link rel="stylesheet" href="css/components/options.css">
+    <link rel="stylesheet" href="css/components/preview-controls.css">
+    <link rel="stylesheet" href="css/components/checkbox.css">
+    <link rel="stylesheet" href="css/utilities.css">
+    <link rel="stylesheet" href="css/components/toast.css">
+    <link rel="stylesheet" href="css/components/loader.css">
+    <link rel="stylesheet" href="css/components/scroll-to-top.css">
+    <link rel="stylesheet" href="css/components/settings.css">
+    <link rel="stylesheet" href="css/components/modal.css">
+    <link rel="stylesheet" href="css/components/tooltips.css">
+
+    <script defer src="js/diff.min.js"></script>
+
+    <!-- Reveal System -->
+    <script>
+        window.addEventListener('load', () => {
+            const preloader = document.getElementById('app-preloader');
+            setTimeout(() => {
+                preloader.style.opacity = '0'; preloader.style.visibility = 'hidden';
+                document.body.classList.remove('app-loading'); document.body.classList.add('app-ready');
+            }, 600);
+        });
+    </script>
+</head>
+
+<body class="app-loading">
+    <!-- Splash Screen Preloader -->
+    <div id="app-preloader">
+        <div class="pl-brand"><span>Toolbox</span><span class="brand-accent">hub</span></div>
+        <div class="pl-grid"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+    </div>
+
+    <button class="menu-toggle" aria-label="Toggle navigation">
+        <app-icon name="menu"></app-icon>
+    </button>
+    <div class="sidebar-overlay"></div>
+
+    <aside class="sidebar">
+        <a href="#/" class="sidebar-header">
+            <img src="images/logo.webp" alt="">
+            <span class="sidebar-brand"><span class="brand-text">Toolbox</span><span class="brand-accent">hub</span></span>
+        </a>
+
+        <nav class="sidebar-nav">
+            <a href="#/file-metadata" class="nav-link" data-tool="file-metadata">
+                <img class="nav-icon" src="images/tools/file-metadata.webp" alt="">
+                File Metadata
+            </a>
+            <a href="#/rule-of-three" class="nav-link" data-tool="rule-of-three">
+                <img class="nav-icon" src="images/tools/rule-of-three.webp" alt="">
+                Rule of Three
+            </a>
+            <a href="#/aspect-ratio" class="nav-link" data-tool="aspect-ratio">
+                <img class="nav-icon" src="images/tools/aspect-ratio.webp" alt="">
+                Aspect Ratio
+            </a>
+            <a href="#/css-compare" class="nav-link" data-tool="css-compare">
+                <img class="nav-icon" src="images/tools/css-compare.webp" alt="">
+                CSS Compare
+            </a>
+            <a href="#/html-extractor" class="nav-link" data-tool="html-extractor">
+                <img class="nav-icon" src="images/tools/html-extractor.webp" alt="">
+                HTML Extractor
+            </a>
+            <a href="#/html-merger" class="nav-link" data-tool="html-merger">
+                <img class="nav-icon" src="images/tools/html-merger.webp" alt="">
+                HTML Merger
+            </a>
+            <a href="#/tax-calculator" class="nav-link" data-tool="tax-calculator">
+                <img class="nav-icon" src="images/tools/tax-calculator.webp" alt="">
+                Tax Calculator
+            </a>
+            <a href="#/style-stripper" class="nav-link" data-tool="style-stripper">
+                <img class="nav-icon" src="images/tools/style-stripper.webp" alt="">
+                Style Stripper
+            </a>
+            <a href="#/web-color-viewer" class="nav-link" data-tool="web-color-viewer">
+                <img class="nav-icon" src="images/tools/web-color-viewer.webp" alt="">
+                Web Color Viewer
+            </a>
+        </nav>
+        <div class="sidebar-footer">
+            <button id="settingsBtn" class="btn-settings-trigger" aria-label="Global Settings">
+                <app-icon name="settings"></app-icon>
+                Global Settings
+            </button>
+        </div>
+
+    </aside>
+
+    <main class="main-content">
+        <div id="app"></div>
+        <footer class="app-footer">
+            <p>Made with <span>♥</span> by <a href="https://github.com/Devilquest" target="_blank" tabindex="-1">Devilquest</a><span id="footer-phrase">: One toolbox to rule them all</span></p>
+        </footer>
+    </main>
+
+    <button id="scrollToTopBtn" class="scroll-to-top" aria-label="Scroll to top" tabindex="-1">
+        <app-icon name="scroll-to-top"></app-icon>
+    </button>
+
+    <div id="toastContainer"></div>
+
+    <div id="settingsModal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="settingsModalTitle">
+        <div class="modal-panel">
+            <div class="modal-header">
+                <h2 id="settingsModalTitle" class="modal-title">
+                    <app-icon name="settings"></app-icon>
+                    Global Settings
+                </h2>
+                <button id="settingsModalClose" class="btn-clear" aria-label="Close settings">✕</button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-group">
+                    <label for="globalCurrency" class="modal-label">Currency</label>
+                    <select id="globalCurrency">
+                        <!-- Dynamically populated from config.js -->
+                    </select>
+
+                </div>
+                <div class="modal-group">
+                    <label class="modal-label">Number Format</label>
+                    <div class="num-format-toggle" id="numFormatToggle" role="group" aria-label="Number format">
+                        <!-- Dynamically populated from config.js -->
+                    </div>
+
+
+                </div>
+                <div class="modal-group">
+                    <label class="modal-label">Background Animation</label>
+                    <div class="settings-tool-row p-0 border-0">
+                        <label class="checkbox-wrapper">
+                            <input type="checkbox" id="settingAnimateBg">
+                            <span class="checkbox-custom"></span>
+                            <div class="checkbox-label-content">
+                                <span class="checkbox-title">Enable Grid Movement</span>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <details class="modal-group advanced-settings">
+                    <summary class="modal-label">Advanced Settings</summary>
+                    <div class="advanced-settings-content">
+                        <div class="advanced-settings-inner">
+                            <div class="advanced-settings-section">
+                                <div class="flex-start mb-xs">
+                                    <label class="modal-label mb-0">Data Saving Permissions</label>
+                                    <span class="info-icon" data-tooltip="Toggle automatic data saving for each tool. Use the trash icon to manually delete stored data.">i</span>
+                                </div>
+                                <p class="settings-help-text">Allow tools to save their state locally in your browser.</p>
+
+                                <div id="settingsDataPermissionsList" class="stack-xs">
+                                    <!-- Dynamically populated from config.js -->
+                                </div>
+                            </div>
+
+                            <div class="mt-lg pt-md">
+                                <button id="btnDeleteAllStorage" class="btn btn-danger btn-sm w-100">
+                                    <app-icon name="delete" size="16px"></app-icon>
+                                    Delete All Saved Data
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </details>
+            </div>
+        </div>
+    </div>
+
+    <!-- Confirmation Modal -->
+    <div id="confirmModal" class="modal-overlay">
+        <div class="modal-panel modal-confirm">
+            <div class="modal-header">
+                <div class="modal-title">
+                    <app-icon id="confirmModalIcon" name="warning"></app-icon>
+                    <span id="confirmModalTitle">Confirm Action</span>
+                </div>
+            </div>
+            <div class="modal-body">
+                <p id="confirmModalMessage" class="confirm-message">Are you sure you want to perform this action? This cannot be undone.</p>
+                <div class="confirm-actions">
+                    <button id="btnConfirmCancel" class="btn btn-secondary btn-sm">Cancel</button>
+                    <button id="btnConfirmAction" class="btn btn-sm">Confirm</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script type="module" src="js/core.js"></script>
+</body>
+
+</html>

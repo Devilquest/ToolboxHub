@@ -1,0 +1,151 @@
+/* ==============================================
+   CORE ANIMATIONS
+   ============================================== */
+@keyframes float {
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+@keyframes shake {
+    10%,
+    90% {
+        transform: translate3d(-1px, 0, 0);
+    }
+    20%,
+    80% {
+        transform: translate3d(2px, 0, 0);
+    }
+    30%,
+    50%,
+    70% {
+        transform: translate3d(-4px, 0, 0);
+    }
+    40%,
+    60% {
+        transform: translate3d(4px, 0, 0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        transform: translateY(8px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes onoff {
+    0%,
+    20% {
+        opacity: var(--base-opacity);
+    }
+    40%,
+    60% {
+        opacity: 1;
+    }
+    80%,
+    100% {
+        opacity: var(--base-opacity);
+    }
+}
+
+@keyframes slideUpFade {
+    from {
+        transform: translateY(20px) scale(0.8);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+}
+
+/* ==============================================
+   TOAST ANIMATIONS
+   ============================================== */
+@keyframes toastIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes toastOut {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+}
+
+@keyframes toastProgress {
+    from {
+        width: 100%;
+    }
+    to {
+        width: 0;
+    }
+}
+
+/* ==============================================
+   SPECIAL COMPONENT ANIMATIONS
+   ============================================== */
+@keyframes wcvEntrance {
+    from {
+        transform: scale(0) rotate(-15deg);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1) rotate(0deg);
+        opacity: 1;
+    }
+}
+
+@keyframes statAppear {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes popInCheck {
+    0% {
+        transform: translate(-50%, -60%) rotate(45deg) scale(0);
+        opacity: 0;
+    }
+    100% {
+        transform: translate(-50%, -60%) rotate(45deg) scale(1.1);
+        opacity: 1;
+    }
+}
+
+/* ==============================================
+   BACKGROUND ANIMATIONS
+   ============================================== */
+@keyframes bgGridScroll {
+    from {
+        background-position: 0 0;
+    }
+    to {
+        background-position: 0 600px;
+    }
+}

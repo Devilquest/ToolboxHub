@@ -1,0 +1,212 @@
+/* ==============================================
+   BUTTONS
+   ============================================== */
+.btn {
+    padding: 12px 26px;
+    position: relative;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    gap: var(--space-sm);
+    cursor: pointer;
+    white-space: nowrap;
+    font-weight: 600;
+    font-size: 0.95rem;
+    border-radius: var(--radius-sm);
+    transition: transform var(--transition), box-shadow var(--transition), background var(--transition), border-color var(--transition);
+}
+
+#clearBtn {
+    margin-left: auto;
+}
+
+/* ==============================================
+   PRIMARY
+   ============================================== */
+.btn-primary {
+    border: 1px solid color-mix(in srgb, var(--neon-primary) 25%, transparent);
+    color: var(--neon-primary);
+    background: color-mix(in srgb, var(--neon-primary) 8%, #080818);
+}
+
+.btn-primary:not(:disabled):hover {
+    border-color: color-mix(in srgb, var(--neon-primary) 50%, transparent);
+    transform: translateY(-2px);
+    box-shadow: 0 0 12px color-mix(in srgb, var(--neon-primary) 35%, transparent),
+        0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.btn-primary:not(:disabled):active {
+    transform: translateY(1px);
+    box-shadow: 0 0 6px color-mix(in srgb, var(--neon-primary) 20%, transparent);
+}
+
+.btn-primary:disabled {
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    color: var(--text-placeholder);
+    cursor: not-allowed;
+    background: rgba(30, 30, 40, 0.4);
+}
+
+/* ==============================================
+   SECONDARY
+   ============================================== */
+.btn-secondary {
+    border: 1px solid var(--glass-border);
+    color: var(--text-primary);
+    background: var(--bg-glass);
+}
+
+.btn-secondary:not(:disabled):hover {
+    border-color: color-mix(in srgb, var(--neon-primary) 20%, transparent);
+    transform: translateY(-2px);
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+}
+
+.btn-secondary:not(:disabled):active {
+    transform: translateY(1px);
+    box-shadow: none;
+}
+
+.btn-secondary:disabled {
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    color: var(--text-placeholder);
+    cursor: not-allowed;
+    background: rgba(30, 30, 40, 0.25);
+}
+
+/* ==============================================
+   TERTIARY
+   ============================================== */
+.btn-tertiary {
+    border: 1px solid color-mix(in srgb, var(--neon-primary) 25%, transparent);
+    color: var(--text-heading);
+    background: color-mix(in srgb, var(--neon-primary) 12%, transparent);
+}
+
+.btn-tertiary:not(:disabled):hover {
+    border-color: color-mix(in srgb, var(--neon-primary) 45%, transparent);
+    transform: translateY(-2px);
+    background: color-mix(in srgb, var(--neon-primary) 20%, transparent);
+    box-shadow: var(--glow-xs);
+}
+
+.btn-tertiary:disabled {
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    transform: none;
+    color: var(--text-placeholder);
+    cursor: not-allowed;
+    background: rgba(30, 30, 40, 0.2);
+    box-shadow: none;
+}
+
+/* ==============================================
+   DANGER
+   ============================================== */
+.btn-danger {
+    border: 1px solid color-mix(in srgb, var(--neon-danger) 25%, transparent);
+    color: var(--neon-danger);
+    background: color-mix(in srgb, var(--neon-danger) 8%, #180808);
+}
+
+.btn-danger:not(:disabled):hover {
+    border-color: color-mix(in srgb, var(--neon-danger) 50%, transparent);
+    transform: translateY(-2px);
+    background: color-mix(in srgb, var(--neon-danger) 12%, #200a0a);
+    box-shadow: 0 0 15px color-mix(in srgb, var(--neon-danger) 30%, transparent),
+        0 4px 15px rgba(0, 0, 0, 0.4);
+}
+
+.btn-danger:not(:disabled):active {
+    transform: translateY(1px);
+    box-shadow: 0 0 8px color-mix(in srgb, var(--neon-danger) 20%, transparent);
+}
+
+.btn-danger:disabled {
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    color: var(--text-placeholder);
+    cursor: not-allowed;
+    background: rgba(30, 30, 40, 0.4);
+}
+
+/* ==============================================
+   SIZE VARIANTS
+   ============================================== */
+.btn-sm {
+    padding: 6px 14px;
+    font-weight: 500;
+    font-size: 0.82rem;
+}
+
+/* ==============================================
+   COPY FEEDBACK STATE
+   ============================================== */
+.copied-success {
+    border-color: color-mix(in srgb, var(--neon-accent) 40%, transparent) !important;
+    position: relative;
+    pointer-events: none;
+    color: transparent !important;
+    background: color-mix(in srgb, var(--neon-accent) 25%, transparent) !important;
+    text-shadow: none !important;
+}
+
+.copied-success > * {
+    opacity: 0;
+}
+
+.copied-success::after {
+    border: solid var(--neon-accent);
+    border-width: 0 2.5px 2.5px 0;
+    width: 6px;
+    height: 12px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    filter: drop-shadow(0 0 4px color-mix(in srgb, var(--neon-accent) 50%, transparent));
+    transform: translate(-50%, -60%) rotate(45deg);
+    animation: popInCheck 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    content: '';
+}
+
+.btn-clear {
+    border: 1px solid color-mix(in srgb, var(--neon-primary) 15%, transparent);
+    padding: 2px 6px;
+    font-size: 1rem;
+    color: var(--text-muted);
+    cursor: pointer;
+    border-radius: var(--radius-sm);
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+    transition: all var(--transition-fast);
+}
+
+.btn-clear:hover {
+    border-color: rgba(255, 40, 40, 0.4);
+    color: rgba(255, 40, 40, 0.7);
+    background: rgba(255, 107, 107, 0.28);
+    box-shadow: 0 0 10px color-mix(in srgb, var(--neon-danger) 30%, transparent);
+}
+
+.btn-clear.disabled {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* ==============================================
+   ACTIVE STATE
+   ============================================== */
+.btn.active {
+    border-color: var(--neon-primary);
+    color: #000000;
+    background: var(--neon-primary);
+    box-shadow: 0 0 15px color-mix(in srgb, var(--neon-primary) 40%, transparent);
+}
+
+/* ==============================================
+   MEDIA QUERIES
+   ============================================== */
+@media (max-width: 768px) {
+    .btn {
+        width: 100%;
+    }
+}

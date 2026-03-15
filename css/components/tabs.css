@@ -1,0 +1,81 @@
+/* ==============================================
+   TABS SYSTEM
+   ============================================== */
+.tabs-container {
+    border-bottom: 1px solid var(--glass-border);
+    display: flex;
+    gap: var(--space-sm);
+}
+
+.tab {
+    border: none;
+    padding: 12px 22px;
+    position: relative;
+    font-weight: 500;
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    cursor: pointer;
+    background: transparent;
+    transition: all var(--transition);
+}
+
+.tab:hover {
+    color: var(--text-heading);
+}
+
+.tab.active {
+    color: var(--neon-primary);
+    text-shadow: var(--glow-xs);
+}
+
+.tab.active::after {
+    height: 2px;
+    position: absolute;
+    right: 0;
+    bottom: -1px;
+    left: 0;
+    border-radius: 2px 2px 0 0;
+    background: var(--neon-primary);
+    box-shadow: var(--glow-sm);
+    content: '';
+}
+
+.tab-content {
+    display: none !important;
+}
+
+.tab-content.active {
+    display: block !important;
+    animation: fadeIn 0.3s ease-in;
+}
+
+.tab-content.active:is(.stack-xs, .stack-sm, .stack-md, .stack-lg, .stack-xl) {
+    display: flex !important;
+}
+
+/* ==============================================
+   CHECKBOX WRAPPER
+   ============================================== */
+.checkbox-wrapper {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    color: var(--text-primary);
+    cursor: pointer;
+}
+
+/* ==============================================
+   MEDIA QUERIES
+   ============================================== */
+@media (max-width: 768px) {
+    .tabs-container {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-xs);
+    }
+
+    .tab {
+        padding: 10px 14px;
+        text-align: left;
+    }
+}

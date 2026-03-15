@@ -1,0 +1,81 @@
+/* ==============================================
+   CSS COMPARE TOOL
+   ============================================== */
+.controls-panel {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--space-md);
+}
+
+#resultsContainer {
+    display: none;
+    animation: fadeIn 0.5s ease-in;
+}
+
+.compare-controls-group {
+    margin-left: 10px;
+}
+
+.result-box {
+    height: 100%;
+    overflow: hidden;
+}
+
+.result-box-header {
+    margin: -15px -15px 0 -15px;
+    border-bottom: 1px solid var(--glass-border);
+    padding: 12px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(10, 10, 20, 0.4);
+}
+
+.result-box-header h3 {
+    font-weight: 600;
+    font-size: 0.95rem;
+    letter-spacing: 0.5px;
+    color: var(--text-heading);
+}
+
+.result-box-header span {
+    padding: 2px 10px;
+    font-weight: 800;
+    font-size: 0.8rem;
+    color: var(--bg-deep);
+    border-radius: 20px;
+    background: var(--neon-primary);
+    box-shadow: var(--glow-xxs);
+}
+
+.result-box.common .result-box-header span {
+    background: var(--neon-accent);
+}
+
+.result-content {
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+}
+
+#resultsContainer textarea {
+    min-height: 500px !important;
+}
+
+.result-actions {
+    margin-top: auto;
+    border: none;
+    padding: 0;
+    background: transparent;
+}
+
+/* ==============================================
+   MEDIA QUERIES
+   ============================================== */
+@media (max-width: 900px) {
+    .result-content textarea {
+        height: 300px;
+    }
+}

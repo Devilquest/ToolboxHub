@@ -1,0 +1,93 @@
+<div class="tool-header">
+    <h1><img src="images/tools/rule-of-three.webp" alt="">Rule of Three Calculator</h1>
+    <p>Quickly solve proportions and rules of three</p>
+</div>
+
+<div class="card workstation-card card-glow text-center">
+    <div class="workstation-panel items-center">
+        <h2 class="card-title mb-md">
+            <span>A</span> is to <span>B</span> as <span>C</span> is to <span>X</span>
+        </h2>
+
+        <div class="formula-container stack-md">
+            <div class="rule-grid">
+                <div class="numeric-input-wrapper">
+                    <input type="text" inputmode="decimal" class="input-field" id="valueA" placeholder="A" step="any">
+                    <div class="input-step-controls">
+                        <button type="button" class="input-step-btn up" data-id="valueA" aria-label="Increase">
+                            <app-icon name="chevron-up"></app-icon>
+                        </button>
+                        <button type="button" class="input-step-btn down" data-id="valueA" aria-label="Decrease">
+                            <app-icon name="chevron-down"></app-icon>
+                        </button>
+                    </div>
+                </div>
+                <div class="numeric-input-wrapper">
+                    <input type="text" inputmode="decimal" class="input-field" id="valueB" placeholder="B" step="any">
+                    <div class="input-step-controls">
+                        <button type="button" class="input-step-btn up" data-id="valueB" aria-label="Increase">
+                            <app-icon name="chevron-up"></app-icon>
+                        </button>
+                        <button type="button" class="input-step-btn down" data-id="valueB" aria-label="Decrease">
+                            <app-icon name="chevron-down"></app-icon>
+                        </button>
+                    </div>
+                </div>
+                <div class="numeric-input-wrapper">
+                    <input type="text" inputmode="decimal" class="input-field" id="valueC" placeholder="C" step="any">
+                    <div class="input-step-controls">
+                        <button type="button" class="input-step-btn up" data-id="valueC" aria-label="Increase">
+                            <app-icon name="chevron-up"></app-icon>
+                        </button>
+                        <button type="button" class="input-step-btn down" data-id="valueC" aria-label="Decrease">
+                            <app-icon name="chevron-down"></app-icon>
+                        </button>
+                    </div>
+                </div>
+                <div class="input-field result-field">
+                    <span class="result-value" id="result">X</span>
+                </div>
+            </div>
+            <div class="content-box content-box-formula text-center" id="liveFormula">X = (B · C) / A</div>
+        </div>
+    </div>
+    <div class="workstation-controls flex-end">
+        <button class="btn btn-secondary" id="clearAllBtn">Clear All</button>
+    </div>
+</div>
+
+<div class="card card-emphasis text-center stack-md">
+    <h3 class="card-title mb-md">➗ Formula used</h3>
+    <div class="content-box content-box-formula">X = (B · C) / A</div>
+    <p>Reference: <a class="default-hover" href="https://en.wikipedia.org/wiki/Cross-multiplication#Rule_of_three"
+            target="_blank" tabindex="-1">Wikipedia -
+            Rule of Three</a></p>
+</div>
+
+<div class="card stack-md">
+    <h3 class="card-title mb-md">📝 Usage Examples</h3>
+    <div class="content-box content-box-example">
+        <strong>Speed:</strong> If in 2 hours I travel 120 km, how many km will I travel in 5 hours?
+        <div class="example-solution stack-xs mt-sm">
+            <div>A = 2, B = 120, C = 5</div>
+            <div>X = (120 · 5) / 2</div>
+            <div>X = <strong>300 km</strong></div>
+        </div>
+    </div>
+    <div class="content-box content-box-example">
+        <strong>Price:</strong> If 3 products cost $15, how much will 8 products cost?
+        <div class="example-solution stack-xs mt-sm">
+            <div>A = 3, B = 15, C = 8</div>
+            <div>X = (15 · 8) / 3</div>
+            <div>X = <strong>$40</strong></div>
+        </div>
+    </div>
+    <div class="content-box content-box-example">
+        <strong>Recipe:</strong> If for 4 people I need 200 g of flour, how much do I need for 7 people?
+        <div class="example-solution stack-xs mt-sm">
+            <div>A = 4, B = 200, C = 7</div>
+            <div>X = (200 · 7) / 4</div>
+            <div>X = <strong>350 g</strong></div>
+        </div>
+    </div>
+</div>

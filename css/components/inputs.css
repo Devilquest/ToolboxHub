@@ -1,0 +1,187 @@
+/* ==============================================
+   INPUT FIELDS
+   ============================================== */
+.input-field {
+    border: 1px solid color-mix(in srgb, var(--neon-primary) 15%, transparent);
+    padding: 18px;
+    width: 100%;
+    height: 70px;
+    text-align: center;
+    font-family: var(--font-mono);
+    font-size: 1.4rem;
+    color: var(--text-heading);
+    border-radius: var(--radius);
+    background: var(--bg-input);
+    transition: all var(--transition);
+}
+
+.input-field.input-small {
+    padding: 10px;
+    height: 44px;
+    font-size: 0.85rem;
+    border-radius: var(--radius-sm);
+}
+
+.input-field:-webkit-autofill,
+.input-field:-webkit-autofill:hover,
+.input-field:-webkit-autofill:focus {
+    -webkit-box-shadow: 0 0 0px 1000px var(--bg-input) inset;
+    -webkit-text-fill-color: var(--text-heading);
+    transition: background-color 5000s ease-in-out 0s;
+}
+
+.input-field:focus {
+    border-color: var(--neon-primary);
+    outline: none;
+    box-shadow: var(--glow-sm);
+}
+
+.input-field:hover {
+    border-color: color-mix(in srgb, var(--neon-primary) 40%, transparent);
+}
+
+.input-field::placeholder {
+    font-size: 1.1rem;
+    color: var(--text-placeholder);
+}
+
+select {
+    border: 1px solid color-mix(in srgb, var(--neon-primary) 15%, transparent);
+    padding: 10px 20px;
+    width: 100%;
+    height: 50px;
+    cursor: pointer;
+    text-align: center;
+    appearance: none;
+    font-family: var(--font-mono);
+    font-size: 1.1rem;
+    color: var(--text-heading);
+    border-radius: var(--radius);
+    background: var(--bg-input);
+    transition: all var(--transition);
+}
+
+select:focus {
+    border-color: var(--neon-primary);
+    outline: none;
+    box-shadow: var(--glow-sm);
+}
+
+select:hover {
+    border-color: color-mix(in srgb, var(--neon-primary) 40%, transparent);
+}
+
+textarea {
+    border: 1px solid color-mix(in srgb, var(--neon-primary) 15%, transparent);
+    padding: 15px;
+    width: 100%;
+    resize: vertical;
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    color: var(--text-heading);
+    border-radius: var(--radius);
+    background: var(--bg-input);
+    transition: all var(--transition);
+}
+
+textarea:focus {
+    border-color: var(--neon-primary);
+    outline: none;
+    box-shadow: var(--glow-sm);
+}
+
+.input-field:disabled,
+.input-field.disabled-readonly {
+    border-color: transparent;
+    cursor: default;
+    color: var(--text-secondary);
+    background: transparent;
+    opacity: 0.7;
+}
+
+/* ==============================================
+   CUSTOM NUMERIC CONTROLS
+   ============================================== */
+.numeric-input-wrapper {
+    width: 100%;
+    position: relative;
+}
+
+.numeric-input-wrapper .input-field {
+    padding-right: 50px;
+}
+
+.input-step-controls {
+    border-left: 1px solid color-mix(in srgb, var(--neon-primary) 12%, transparent);
+    width: 44px;
+    position: absolute;
+    top: 1px;
+    right: 1px;
+    bottom: 1px;
+    z-index: 5;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border-radius: 0 var(--radius) var(--radius) 0;
+    background: color-mix(in srgb, var(--neon-primary) 2%, transparent);
+}
+
+.input-step-btn {
+    border: none;
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+    color: var(--text-secondary);
+    cursor: pointer;
+    user-select: none;
+    background: transparent;
+    transition: all var(--transition);
+}
+
+.input-step-btn.up {
+    border-bottom: 1px solid color-mix(in srgb, var(--neon-primary) 10%, transparent);
+}
+
+.input-step-btn:hover {
+    color: var(--neon-primary);
+    background: color-mix(in srgb, var(--neon-primary) 10%, transparent);
+}
+
+.input-step-btn:active {
+    background: color-mix(in srgb, var(--neon-primary) 20%, transparent);
+}
+
+.input-step-btn svg,
+.input-step-btn app-icon {
+    width: 16px;
+    height: 16px;
+    stroke-width: 2.5px;
+    opacity: 0.6;
+    transition: opacity var(--transition);
+}
+
+.input-step-btn:hover svg,
+.input-step-btn:hover app-icon {
+    opacity: 1;
+}
+
+/* ==============================================
+   MEDIA QUERIES
+   ============================================== */
+@media (max-width: 768px) {
+    .input-field {
+        padding: 14px;
+        height: 60px;
+        font-size: 1.15rem;
+    }
+
+    .numeric-input-wrapper .input-field {
+        padding-right: 50px;
+        padding-left: 50px;
+    }
+
+    .input-step-controls {
+        width: 38px;
+    }
+}

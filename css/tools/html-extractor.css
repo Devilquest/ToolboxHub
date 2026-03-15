@@ -1,0 +1,11 @@
+/* ==============================================
+   HTML EXTRACTOR
+   ============================================== */
+#resultsContainer textarea {
+    min-height: 398px !important;
+}
+
+.horizontal-line {
+    border-top: 1px solid var(--glass-border);
+    padding-top: var(--space-lg);
+}

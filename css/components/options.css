@@ -1,0 +1,47 @@
+/* ==============================================
+   OPTIONS PANEL
+   ============================================== */
+.options-panel {
+    border: 1px solid var(--glass-border);
+    padding: var(--space-md) var(--space-lg);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-lg);
+    border-radius: var(--radius);
+    background: color-mix(in srgb, var(--neon-primary) 3%, transparent);
+}
+
+.options-group {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-lg);
+}
+
+.options-group.highlight {
+    border: 1px solid var(--glass-border);
+    padding: var(--space-sm) var(--space-md);
+    border-radius: var(--radius-sm);
+    background: color-mix(in srgb, #ffffff 3%, transparent);
+}
+
+.options-sub-group {
+    border-left: 1px solid var(--glass-border);
+    padding-left: var(--space-md);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-md);
+}
+
+/* ==============================================
+   MEDIA QUERIES
+   ============================================== */
+@media (max-width: 768px) {
+    .options-panel {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--space-md);
+    }
+}

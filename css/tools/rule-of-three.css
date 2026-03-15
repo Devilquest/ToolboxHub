@@ -1,0 +1,73 @@
+/* ==============================================
+   RULE OF THREE TOOL
+   ============================================== */
+.formula-container {
+    width: 100%;
+    max-width: 650px;
+}
+
+.rule-grid {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-md);
+}
+
+.result-field {
+    border: 2px solid color-mix(in srgb, var(--neon-primary) 50%, transparent);
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: color-mix(in srgb, var(--neon-primary) 6%, transparent);
+}
+
+.result-field::before {
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: var(--bg-deep);
+    border-radius: 50%;
+    background: var(--neon-primary);
+    box-shadow: var(--glow-sm);
+    transform: translateX(-50%);
+    content: '=';
+}
+
+.result-value {
+    padding: 10px;
+    width: 100%;
+    font-weight: bold;
+    font-size: 1.7rem;
+    font-family: var(--font-mono);
+    text-align: center;
+    word-break: break-all;
+    user-select: all;
+    background: var(--neon-primary);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* ==============================================
+   MEDIA QUERIES
+   ============================================== */
+@media (max-width: 768px) {
+    .rule-grid {
+        max-width: 100%;
+        gap: var(--space-md);
+    }
+
+    .result-value {
+        font-size: 1.5rem;
+    }
+}

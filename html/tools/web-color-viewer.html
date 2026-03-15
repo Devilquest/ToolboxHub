@@ -1,0 +1,71 @@
+<div class="tool-header">
+    <h1><img src="images/tools/web-color-viewer.webp" alt="">Web Color Viewer</h1>
+    <p>Compare and visualize web colors interactively</p>
+</div>
+
+<div class="card workstation-card">
+    <div class="workstation-panel stack-md">
+        <div class="web-color-viewer-controls">
+            <div class="web-color-viewer-controls-row">
+                <div class="stack-xs">
+                    <label class="field-label">Cards</label>
+                    <select id="wcvGridSize">
+                        <option value="5" selected>5 Cards</option>
+                        <option value="10">10 Cards</option>
+                        <option value="15">15 Cards</option>
+                        <option value="20">20 Cards</option>
+                    </select>
+                </div>
+                <div class="stack-xs">
+                    <label class="field-label">Preset</label>
+                    <select id="wcvPreset">
+                        <option value="">Load Preset...</option>
+                    </select>
+                </div>
+                <div class="stack-xs">
+                    <label class="field-label">Sort</label>
+                    <select id="wcvSort">
+                        <option value="">Sort by...</option>
+                        <option value="name">Name (A-Z)</option>
+                        <option value="hue">Hue (Tonal)</option>
+                        <option value="luminance">Brightness</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="web-color-viewer-grid" id="wcvGrid"></div>
+    </div>
+
+    <div class="workstation-controls flex-between">
+        <div class="flex-row-gap-sm">
+            <button id="wcvAddCard" class="btn btn-primary">Add Card</button>
+            <button id="wcvRandom" class="btn btn-secondary">Randomize</button>
+            <button id="wcvImportBtn" class="btn btn-secondary">Import</button>
+            <button id="wcvToggleBg" class="btn btn-secondary" aria-label="Toggle Background Mode">
+                <app-icon name="theme-toggle"></app-icon>
+            </button>
+        </div>
+        <div class="flex-row-gap-sm">
+            <button id="wcvCopyList" class="btn btn-secondary">Copy List</button>
+            <button id="wcvResetAll" class="btn btn-secondary">Reset</button>
+        </div>
+    </div>
+</div>
+
+<!-- Import Modal -->
+<div id="wcvImportModal" class="modal-overlay" role="dialog" aria-modal="true">
+    <div class="modal-panel">
+        <div class="modal-header">
+            <h2 class="modal-title">Import Colors</h2>
+            <button id="wcvCancelImport" class="btn-clear" aria-label="Close import">✕</button>
+        </div>
+        <div class="modal-body">
+            <p class="wcv-modal-desc">Paste your color list below (separated by newlines, commas, or semicolons):</p>
+            <textarea id="wcvImportTextarea" placeholder="Yellow, Orange; Red&#10;SaddleBrown" rows="8"></textarea>
+            <div class="flex-end">
+                <button id="wcvConfirmImport" class="btn btn-primary">Import List</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,261 @@
+/* ==============================================
+   MAIN CONTENT AREA
+   ============================================== */
+.main-content {
+    margin-left: var(--sidebar-width);
+    min-height: 100vh;
+    position: relative;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    z-index: 1;
+}
+
+#app {
+    margin: 0 auto;
+    padding: 30px;
+    width: 100%;
+    max-width: 1100px;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: var(--space-xl);
+}
+
+#app.tool-wide {
+    max-width: 1300px;
+}
+
+/* ==============================================
+   TOOL HEADER
+   ============================================== */
+.home-header,
+.tool-header {
+    border: 1px solid var(--glass-border);
+    padding: 35px 30px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    overflow: hidden;
+    text-align: center;
+    border-radius: var(--radius-lg);
+    background: var(--bg-glass);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+}
+
+.home-header::before,
+.tool-header::before {
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--neon-primary), transparent);
+    opacity: 0.6;
+    content: '';
+}
+
+.home-header::after {
+    position: absolute;
+    inset: auto 0 0 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--neon-primary), transparent);
+    opacity: 0.6;
+    content: '';
+}
+
+.tool-header h1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: var(--space-md);
+    font-weight: 700;
+    font-size: 2.2rem;
+    color: var(--text-heading);
+    text-shadow: var(--glow-xs);
+}
+
+.home-header h1 img,
+.tool-header h1 img {
+    width: 48px;
+    height: 48px;
+    animation: float 5s ease-in-out infinite;
+}
+
+.tool-header p {
+    font-size: 1.05rem;
+    color: var(--text-muted);
+}
+
+/* ==============================================
+   HOME GALLERY
+   ============================================== */
+.home-header h1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: var(--space-md);
+    font-size: 2.6rem;
+    color: var(--text-heading);
+}
+
+.home-header h1 .brand-text {
+    text-shadow: var(--glow-xs);
+}
+
+.home-header h1 .brand-accent {
+    margin-left: 5px;
+    padding: 0 7px;
+    font-weight: 700;
+    color: var(--bg-deep);
+    border-radius: 5px;
+    background: var(--neon-primary);
+    text-shadow: var(--glow-xs);
+    filter: drop-shadow(0 0 12px color-mix(in srgb, var(--neon-primary) 35%, transparent));
+}
+
+.home-header p {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+}
+
+.tools-gallery {
+    padding: 10px 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-lg);
+}
+
+.tools-gallery > * {
+    flex: 1 1 300px;
+    max-width: calc(33.33% - (var(--space-lg) * 2 / 3));
+}
+
+/* ==============================================
+   FOOTER
+   ============================================== */
+.app-footer {
+    margin-top: auto;
+    padding: 16px 30px;
+    font-size: 0.85rem;
+    text-align: center;
+    color: var(--text-muted);
+}
+
+.app-footer span {
+    color: #e74c3c;
+}
+
+#footer-phrase {
+    color: inherit;
+}
+
+.app-footer a {
+    font-weight: 600;
+    color: var(--text-secondary);
+}
+
+.app-footer a:hover {
+    color: var(--neon-primary);
+    text-shadow: var(--glow-xs);
+}
+
+/* ==============================================
+   TOOL WORKSTATIONS
+   ============================================== */
+.card.workstation-card {
+    padding: 0;
+    overflow: hidden;
+}
+
+.workstation-grid {
+    display: grid;
+    gap: 0;
+}
+
+.workstation-grid.items-2 {
+    grid-template-columns: 1fr 1fr;
+}
+
+.workstation-grid.items-3 {
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.workstation-panel {
+    padding: var(--workspace-padding);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+}
+
+.workstation-panel:not(:last-child) {
+    border-right: 1px solid var(--glass-border);
+}
+
+.workstation-controls {
+    border-top: 1px solid var(--glass-border);
+    padding: 20px var(--workspace-padding);
+    background: rgba(10, 10, 20, 0.3);
+}
+
+/* ==============================================
+   MEDIA QUERIES
+   ============================================== */
+@media (max-width: 1024px) {
+    .main-content {
+        margin-left: 0;
+    }
+
+    #app {
+        padding: 20px 15px;
+    }
+
+    .tools-gallery > * {
+        max-width: calc(50% - (var(--space-lg) / 2));
+    }
+
+    .workstation-grid.items-2,
+    .workstation-grid.items-3 {
+        grid-template-columns: 1fr;
+    }
+
+    .workstation-panel:not(:last-child) {
+        border-right: none;
+        border-bottom: 1px solid var(--glass-border);
+    }
+
+    .workstation-controls.flex-between {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-md);
+    }
+
+    .workstation-controls.flex-between > * {
+        width: 100%;
+        justify-content: center;
+        text-align: center;
+    }
+}
+
+@media (max-width: 768px) {
+    .tool-header h1 {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-sm);
+        font-size: 1.7rem;
+    }
+
+    .home-header h1 {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-sm);
+        font-size: 1.9rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .tools-gallery > * {
+        max-width: 100%;
+    }
+}

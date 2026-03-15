@@ -1,0 +1,161 @@
+/* ==============================================
+   CARDS & TOOL GALLERY
+   ============================================== */
+.card {
+    border: 1px solid var(--glass-border);
+    padding: var(--card-padding);
+    position: relative;
+    border-radius: var(--radius);
+    background: var(--bg-glass);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    transition: all var(--transition);
+}
+
+.card-glow {
+    --glow-gradient: radial-gradient(circle at center,
+            color-mix(in srgb, var(--neon-primary) 4%, transparent) 0%,
+            transparent 70%);
+}
+
+.card-glow::before {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    border-radius: inherit;
+    background: var(--glow-gradient);
+    content: '';
+}
+
+.card-glow.glow-fixed {
+    --glow-gradient: radial-gradient(400px circle at 50% 210px,
+            color-mix(in srgb, var(--neon-primary) 4%, transparent),
+            transparent);
+}
+
+.card-emphasis {
+    background: linear-gradient(135deg, color-mix(in srgb, var(--neon-primary) 6%, transparent) 0%, color-mix(in srgb, var(--neon-secondary) 4%, transparent) 100%);
+}
+
+/* ==============================================
+   HOME GALLERY CARDS
+   ============================================== */
+.tool-card {
+    border: 1px solid var(--glass-border);
+    padding: 28px 24px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-md);
+    overflow: hidden;
+    text-align: center;
+    cursor: pointer;
+    border-radius: var(--radius-lg);
+    background: var(--bg-glass);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    transition: all var(--transition);
+}
+
+.tool-card::before {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    background: radial-gradient(circle at 50% 0%, color-mix(in srgb, var(--neon-primary) 6%, transparent), transparent 70%);
+    transition: opacity var(--transition);
+    content: '';
+}
+
+.tool-card:hover::before {
+    opacity: 1;
+}
+
+.tool-card:hover {
+    border-color: color-mix(in srgb, var(--neon-primary) 40%, transparent);
+    transform: translateY(-6px);
+    box-shadow: var(--glow-md);
+}
+
+.tool-card-icon {
+    border: 1px solid color-mix(in srgb, var(--neon-primary) 15%, transparent);
+    padding: 12px;
+    width: 70px;
+    height: 70px;
+    position: relative;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: var(--radius);
+    background: color-mix(in srgb, var(--neon-primary) 8%, transparent);
+}
+
+.tool-card-icon.is-emoji {
+    font-size: 2.2rem;
+}
+
+.tool-card-title {
+    position: relative;
+    z-index: 1;
+    font-weight: 600;
+    font-size: 1.2rem;
+    color: var(--text-heading);
+}
+
+.tool-card-desc {
+    position: relative;
+    z-index: 1;
+    flex-grow: 1;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: var(--text-muted);
+}
+
+.tool-header p span,
+.tool-card-desc span {
+    padding: 0 3px;
+    border-radius: 3px;
+    background: color-mix(in srgb, var(--neon-primary) 10%, transparent);
+}
+
+/* ==============================================
+   DRAG & DROP STATES
+   ============================================== */
+.drag-placeholder {
+    border: 2px dashed var(--neon-primary) !important;
+    opacity: 0.2 !important;
+    transform: scale(0.95) !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    transition: none !important;
+    backdrop-filter: none !important;
+}
+
+.is-dragging {
+    border: 2px dashed var(--neon-primary) !important;
+    z-index: 100;
+    transform: scale(0.98) !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5) !important;
+    transition: none !important;
+}
+
+.is-sorting,
+.is-sorting *,
+.is-sorting *::before,
+.is-sorting *::after {
+    transition: none !important;
+    animation: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+}
+
+/* ==============================================
+   MEDIA QUERIES
+   ============================================== */
+@media (max-width: 768px) {
+    .card {
+        padding: 18px;
+    }
+}

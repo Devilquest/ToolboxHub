@@ -1,0 +1,123 @@
+<div class="tool-header">
+    <h1><img src="images/tools/style-stripper.webp" alt="">Style Stripper</h1>
+    <p>Clean HTML and JS by stripping CSS classes, inline styles, and styling logic</p>
+</div>
+
+<!-- Input Section -->
+<div class="card workstation-card" id="inputContainer">
+    <div class="workstation-panel stack-md">
+        <!-- Upload & Paste Area -->
+        <div class="upload-area un-gap-md" id="dropZone">
+            <div class="upload-icon mb-sm">
+                <app-icon name="file-upload"></app-icon>
+            </div>
+            <div class="upload-text">Drop a file here</div>
+            <div class="upload-subtext">or click to browse (.html, .js)</div>
+        </div>
+        <input type="file" id="fileInput" class="hidden un-gap-md" accept=".html,.htm,.js,.jsx,.ts,.tsx">
+
+        <div class="file-list">
+            <div class="file-info-bar d-none" id="fileInfo">
+                <span>📄 <span id="fileNameDisplay"></span></span>
+                <button type="button" class="btn-clear" id="clearFileBtn" title="Clear">✕</button>
+            </div>
+        </div>
+
+        <textarea id="inputArea" class="paste-area" placeholder="Or paste your code here..."></textarea>
+    </div>
+
+    <div class="workstation-controls flex-between">
+        <button id="cleanBtn" class="btn btn-primary" disabled>Strip Styles</button>
+        <button id="resetBtn" class="btn btn-secondary" disabled>Reset</button>
+    </div>
+</div>
+
+<!-- Result Section -->
+<div class="card workstation-card card-glow hidden" id="resultsContainer">
+    <div class="workstation-panel stack-md">
+        <div class="flex-between items-center mb-lg">
+            <h2 class="card-title mb-0">Stripped Results</h2>
+            <div class="flex-row-gap-sm">
+                <button class="btn btn-primary" id="downloadBtn">Download File</button>
+                <button class="btn btn-tertiary" id="copyBtn">Copy Code</button>
+            </div>
+        </div>
+
+        <div class="card card-emphasis stats-panel text-center mb-lg" id="stats"></div>
+
+        <!-- Output Options -->
+        <div class="options-panel mb-lg">
+            <!-- General Scope -->
+            <div class="options-group">
+                <label class="checkbox-wrapper" title="Instead of deleting the code, it will be commented out using the appropriate syntax for HTML, CSS, or JS.">
+                    <input type="checkbox" id="stripCommentInstead">
+                    <span class="checkbox-custom"></span>
+                    <div class="checkbox-label-content">
+                        <span class="checkbox-title">Comment instead of deleting</span>
+                    </div>
+                </label>
+                <label class="checkbox-wrapper" title="Detects and removes all <style> blocks found within the HTML code.">
+                    <input type="checkbox" id="stripStyleBlock" checked="">
+                    <span class="checkbox-custom"></span>
+                    <div class="checkbox-label-content">
+                        <span class="checkbox-title">Remove &lt;style&gt; blocks</span>
+                    </div>
+                </label>
+            </div>
+
+            <!-- Script Scope (Highlighted) -->
+            <div class="options-group highlight">
+                <label class="checkbox-wrapper" title="Enables the analysis and cleaning of CSS-related code inside <script> blocks.">
+                    <input type="checkbox" id="cleanScriptStyles" checked="">
+                    <span class="checkbox-custom"></span>
+                    <div class="checkbox-label-content">
+                        <span class="checkbox-title">Clean styles inside scripts</span>
+                    </div>
+                </label>
+
+                <div class="options-sub-group">
+                    <label class="checkbox-wrapper" id="jsLogicContainer" title="Removes JS lines that manipulate classes or styles. Requires 'Clean styles inside scripts' to be enabled.">
+                        <input type="checkbox" id="stripJsLogic" checked="">
+                        <span class="checkbox-custom"></span>
+                        <div class="checkbox-label-content">
+                            <span class="checkbox-title">Strip Class/Style logic methods</span>
+                        </div>
+                    </label>
+
+                    <label class="checkbox-wrapper" id="unusedVarsContainer" title="Removes unused selector variable declarations. Requires 'Clean styles inside scripts' enabled. WARNING: Use with caution.">
+                        <input type="checkbox" id="stripUnusedVars" checked="">
+                        <span class="checkbox-custom"></span>
+                        <div class="checkbox-label-content">
+                            <span class="checkbox-title" id="unusedVarsLabel">Remove unused variable declarations</span>
+                        </div>
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <div class="tabs-container">
+            <button class="tab active" data-tab="clean">Stripped Code</button>
+            <button class="tab" data-tab="diff">View Changes</button>
+            <button class="tab" data-tab="preview">Live Preview</button>
+        </div>
+
+        <div class="tab-content active" id="clean-tab">
+            <textarea id="outputArea" readonly placeholder="Result will appear here..."></textarea>
+        </div>
+
+        <div class="tab-content" id="diff-tab">
+            <div id="diffContainer" class="overflow-auto">
+                <div class="text-muted italic text-center p-xl">Rendering differences...</div>
+            </div>
+        </div>
+
+        <div class="tab-content" id="preview-tab">
+            <div class="preview-container theme-dark" id="previewContainer">
+                <button class="preview-theme-toggle" id="togglePreviewTheme" title="Change background (may be overridden)">
+                    <app-icon name="theme-toggle" size="16px"></app-icon>
+                </button>
+                <iframe id="preview-frame" class="preview-iframe" title="Live Preview"></iframe>
+            </div>
+        </div>
+    </div>
+</div>

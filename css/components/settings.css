@@ -1,0 +1,280 @@
+/* ==============================================
+   SIDEBAR SETTINGS TRIGGER
+   ============================================== */
+.sidebar-footer {
+    border-top: 1px solid var(--glass-border);
+    padding: var(--space-md);
+    margin-top: auto;
+}
+
+.btn-settings-trigger {
+    border: 1px solid var(--glass-border);
+    padding: 10px 14px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    font-weight: 500;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    cursor: pointer;
+    border-radius: var(--radius-sm);
+    background: transparent;
+    transition: all var(--transition);
+}
+
+.btn-settings-trigger svg {
+    flex-shrink: 0;
+    stroke: var(--text-muted);
+    opacity: 0.7;
+    transition: all var(--transition);
+}
+
+.btn-settings-trigger:hover {
+    border-color: color-mix(in srgb, var(--neon-primary) 30%, transparent);
+    color: var(--text-primary);
+    background: color-mix(in srgb, var(--neon-primary) 5%, transparent);
+}
+
+.btn-settings-trigger:hover svg {
+    stroke: var(--neon-primary);
+    opacity: 1;
+    filter: drop-shadow(0 0 4px var(--neon-primary));
+}
+
+/* ==============================================
+   SETTINGS BUTTONS & INPUTS
+   ============================================== */
+.modal-group select {
+    font-family: var(--font-sans);
+    font-size: 1.2rem;
+}
+
+.modal-group select:focus {
+    border-color: var(--neon-primary);
+    outline: none;
+    box-shadow: 0 0 0 2px color-mix(in srgb, var(--neon-primary) 20%, transparent);
+}
+
+/* ==============================================
+   NUMBER FORMAT DOUBLE TOGGLE
+   ============================================== */
+.num-format-toggle {
+    display: flex;
+}
+
+.num-format-btn {
+    border: 1px solid color-mix(in srgb, var(--neon-primary) 15%, transparent);
+    padding: 12px 16px;
+    position: relative;
+    z-index: 1;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: var(--text-muted);
+    cursor: pointer;
+    background: var(--bg-input);
+    transition: all var(--transition-fast);
+}
+
+.num-format-btn:first-child {
+    border-radius: var(--radius) 0 0 var(--radius);
+}
+
+.num-format-btn:last-child {
+    margin-left: -1px;
+    border-radius: 0 var(--radius) var(--radius) 0;
+}
+
+.num-format-btn:hover:not([aria-pressed="true"]) {
+    border-color: color-mix(in srgb, var(--neon-primary) 40%, transparent);
+    z-index: 10;
+    color: var(--text-heading);
+    background: color-mix(in srgb, var(--neon-primary) 5%, transparent);
+}
+
+.num-format-btn[aria-pressed="true"] {
+    border-color: var(--neon-primary);
+    z-index: 5;
+    color: var(--neon-primary);
+    text-shadow: var(--glow-xxxs);
+    background: color-mix(in srgb, var(--neon-primary) 12%, transparent);
+}
+
+.num-format-example {
+    font-weight: 600;
+    font-size: 1.2rem;
+    font-family: var(--font-mono);
+    transition: inherit;
+}
+
+.num-format-desc {
+    font-weight: 400;
+    font-size: 0.78rem;
+    font-family: var(--font-sans);
+    color: var(--text-placeholder);
+    transition: inherit;
+}
+
+.num-format-btn[aria-pressed="true"] .num-format-desc {
+    color: color-mix(in srgb, var(--neon-primary) 60%, transparent);
+}
+
+.separator-highlight {
+    font-weight: 700;
+    font-size: 1.5em;
+    color: var(--text-primary);
+}
+
+.num-format-btn[aria-pressed="true"] .separator-highlight {
+    color: var(--neon-primary);
+}
+
+/* ==============================================
+   ADVANCED SETTINGS
+   ============================================== */
+.advanced-settings {
+    margin-top: var(--space-md);
+    border-top: 1px solid var(--glass-border);
+    padding-top: var(--space-md);
+}
+
+.advanced-settings summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    list-style: none;
+    outline: none;
+    color: var(--text-heading);
+    cursor: pointer;
+    user-select: none;
+    transition: color var(--transition);
+}
+
+.advanced-settings summary::-webkit-details-marker {
+    display: none;
+}
+
+.advanced-settings summary::after {
+    content: '+';
+    font-weight: 300;
+    font-size: 1.4rem;
+    line-height: 1;
+    color: var(--text-heading);
+    transition: color var(--transition), transform var(--transition);
+}
+
+.advanced-settings[open]:not(.closing) summary::after {
+    content: '−';
+}
+
+.advanced-settings summary:hover,
+.advanced-settings summary:hover::after {
+    color: var(--neon-primary);
+    text-shadow: var(--glow-xxxs);
+}
+
+.advanced-settings[open]:not(.closing) .advanced-settings-content {
+    margin-top: var(--space-md);
+    grid-template-rows: 1fr;
+    opacity: 1;
+    overflow: visible;
+}
+
+.advanced-settings-content {
+    display: grid;
+    grid-template-rows: 0fr;
+    opacity: 0;
+    overflow: hidden;
+    transition: grid-template-rows 0.35s ease, margin-top 0.35s ease, opacity 0.3s ease;
+}
+
+.advanced-settings-section {
+    border-left: 2px solid color-mix(in srgb, var(--neon-primary) 20%, transparent);
+    padding-left: var(--space-sm);
+    margin-bottom: var(--space-lg);
+    transition: border-color var(--transition);
+}
+
+.advanced-settings-section:last-child {
+    margin-bottom: 0;
+}
+
+.advanced-settings-inner {
+    min-height: 0;
+    overflow: hidden;
+}
+
+.advanced-settings[open]:not(.closing) .advanced-settings-inner {
+    overflow: visible;
+}
+
+.settings-help-text {
+    margin-bottom: var(--space-md);
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+.advanced-settings-content .checkbox-wrapper {
+    margin-bottom: var(--space-sm);
+}
+
+.advanced-settings-content .checkbox-wrapper:last-of-type {
+    margin-bottom: 0;
+}
+
+.settings-divider {
+    border-top: 1px solid var(--glass-border);
+}
+
+.settings-tool-row {
+    margin-bottom: 4px;
+    padding: var(--space-xs) var(--space-sm);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: var(--radius-sm);
+    transition: background-color var(--transition-fast);
+}
+
+.settings-tool-row .checkbox-wrapper {
+    margin-bottom: 0 !important;
+}
+
+.btn-delete-tool {
+    border: 1px solid transparent;
+    width: 34px;
+    height: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-muted);
+    cursor: pointer;
+    opacity: 0.6;
+    border-radius: var(--radius-sm);
+    background: transparent;
+    transition: all var(--transition-fast);
+}
+
+.btn-delete-tool:not(:disabled):hover {
+    border-color: rgba(255, 68, 68, 0.2);
+    color: var(--neon-danger);
+    opacity: 1;
+    background: rgba(255, 68, 68, 0.1);
+    box-shadow: 0 0 10px rgba(255, 68, 68, 0.2);
+}
+
+.btn-delete-tool:disabled {
+    opacity: 0.15;
+    cursor: not-allowed;
+}
+
+/* ==============================================
+   MEDIA QUERIES
+   ============================================== */
+@media (max-width: 576px) {
+    .num-format-desc {
+        font-size: 0.7rem !important;
+    }
+}

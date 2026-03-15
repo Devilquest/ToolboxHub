@@ -1,0 +1,43 @@
+/* ==============================================
+   SCROLL TO TOP
+   ============================================== */
+.scroll-to-top {
+    border: 1px solid color-mix(in srgb, var(--neon-primary) 30%, transparent);
+    width: 42px;
+    height: 42px;
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    font-size: 1.1rem;
+    color: var(--neon-primary);
+    cursor: pointer;
+    border-radius: var(--radius-sm);
+    background: var(--bg-surface);
+    box-shadow: var(--glow-xs);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    transition: all var(--transition);
+}
+
+.scroll-to-top svg,
+.scroll-to-top app-icon {
+    margin-top: -1px;
+    width: 24px;
+    height: 24px;
+}
+
+.scroll-to-top.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.scroll-to-top:hover {
+    transform: scale(1.08);
+    box-shadow: var(--glow-md);
+}
