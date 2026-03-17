@@ -68,7 +68,7 @@ export function createZipBlob(files) {
     let centralDirectorySize = 0;
     let offset = 0;
     const now = new Date();
-    const dosTime = (now.getHours() << 11) | (now.getMinutes() << 5) | (now.getSeconds() >> 1);
+    const dosTime = (now.getHours() << 11) | (now.getMinutes() << 5) | (now.getSeconds() >>> 1);
     const dosDate = ((now.getFullYear() - 1980) << 9) | ((now.getMonth() + 1) << 5) | now.getDate();
 
     files.forEach(file => {
@@ -77,12 +77,16 @@ export function createZipBlob(files) {
         const contentBytes = typeof file.content === 'string' ? textEncoder.encode(file.content) : file.content;
         const crc = calculateCrc32(contentBytes);
 
+        // General purpose bit flag: set Bit 11 for UTF-8 filename (0x0800)
+        const flags = 0x0800;
+
         // Local file header (30 bytes + name length)
         const header = new ArrayBuffer(30 + nameBytes.length);
         const view = new DataView(header);
         view.setUint32(0, 0x04034b50, true); // Signature
-        view.setUint16(4, 10, true);         // Version
-        view.setUint16(8, 0, true);          // Flags
+        view.setUint16(4, 20, true);         // Version needed (2.0 for UTF-8)
+        view.setUint16(6, flags, true);      // General purpose bit flag
+        view.setUint16(8, 0, true);          // Compression method (0 = Store)
         view.setUint16(10, dosTime, true);
         view.setUint16(12, dosDate, true);
         view.setUint32(14, crc, true);
@@ -97,11 +101,12 @@ export function createZipBlob(files) {
         const cdHeader = new ArrayBuffer(46 + nameBytes.length);
         const cdView = new DataView(cdHeader);
         cdView.setUint32(0, 0x02014b50, true); // Signature
-        cdView.setUint16(4, 20, true);         // Made by
-        cdView.setUint16(6, 10, true);         // Version needed
-        cdView.setUint16(8, 0, true);          // Flags
-        cdView.setUint16(10, dosTime, true);
-        cdView.setUint16(12, dosDate, true);
+        cdView.setUint16(4, 20, true);         // Made by (2.0)
+        cdView.setUint16(6, 20, true);         // Version needed (2.0)
+        cdView.setUint16(8, flags, true);      // General purpose bit flag
+        cdView.setUint16(10, 0, true);         // Compression method (0 = Store)
+        cdView.setUint16(12, dosTime, true);
+        cdView.setUint16(14, dosDate, true);
         cdView.setUint32(16, crc, true);
         cdView.setUint32(20, contentBytes.length, true);
         cdView.setUint32(24, contentBytes.length, true);
@@ -122,10 +127,13 @@ export function createZipBlob(files) {
     const eocd = new ArrayBuffer(22);
     const eocdView = new DataView(eocd);
     eocdView.setUint32(0, 0x06054b50, true); // Signature
+    eocdView.setUint16(4, 0, true);          // Disk number
+    eocdView.setUint16(6, 0, true);          // Disk with CD
     eocdView.setUint16(8, files.length, true); // Entries on this disk
     eocdView.setUint16(10, files.length, true); // Total entries
     eocdView.setUint32(12, centralDirectorySize, true);
     eocdView.setUint32(16, offset, true);
+    eocdView.setUint16(20, 0, true);         // Comment length
 
     const allParts = [...fileParts, ...centralDirectoryParts, new Uint8Array(eocd)];
     return new Blob(allParts, { type: 'application/zip' });

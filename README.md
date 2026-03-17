@@ -4,7 +4,7 @@
 
 **An all-in-one, private-first collection of simple and powerful online utilities.**
 
-![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)
+![Version](https://img.shields.io/badge/version-1.0.1-blue.svg)
 [![Live Demo](https://img.shields.io/badge/Live%20Demo-Visit%20Site-10b981.svg)](https://devilquest.github.io/ToolboxHub/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-f59e0b.svg)](LICENSE)
 
@@ -458,6 +458,10 @@ The Hub's efficiency is built on a "Shared-First" architecture. Key global utili
 *   **Logic**: A robust drag-and-drop orchestration layer that manages DOM reordering and serializes the resulting state to `localStorage`.
 *   **Used by**: `Dashboard`, `Web Color Viewer`.
 
+### 📦 ZIP Generation Orchestration <a id="zip-generation"></a>
+*   **Logic**: A manual ZIP generator without external libraries that handles header construction, CRC-32 calculation, and UTF-8 encoding for filenames (Bit 11).
+*   **Used by**: `HTML Extractor`, `CSS Compare`.
+
 ### 📢 Global Feedback System <a id="global-feedback-system"></a>
 *   **Logic**: An asynchronous "Toast" and inline validation engine that provides real-time status updates (success, error, warning) across all tool instances.
 *   **Used by**: `Global` (All Tools).
@@ -475,6 +479,9 @@ The Hub's efficiency is built on a "Shared-First" architecture. Key global utili
 ---
 
 ## 📋 Changelog <a id="changelog"></a>
+### [1.0.1]
+- 🐛 **ZIP Generation**: Fixed corrupted ZIP files in HTML Extractor and CSS Compare by correcting header offsets and adding UTF-8 support.
+
 ### [1.0.0]
 - Initial release.
 
