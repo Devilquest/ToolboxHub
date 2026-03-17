@@ -278,3 +278,24 @@
         font-size: 0.7rem !important;
     }
 }
+
+/* ==============================================
+   VERSION INFORMATION
+   ============================================== */
+.settings-version-info {
+    padding-top: var(--space-md);
+    border-top: 1px dashed var(--glass-border);
+    display: flex;
+    justify-content: center;
+}
+
+.version-tag {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    opacity: 0.5;
+    letter-spacing: 0.5px;
+    background: color-mix(in srgb, var(--text-muted) 5%, transparent);
+    padding: 2px 8px;
+    border-radius: 10px;
+}

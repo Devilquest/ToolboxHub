@@ -459,6 +459,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
             updateDeleteAllButtonState();
         }
+
+        const versionEl = document.getElementById('settingsVersion');
+        if (versionEl && APP_CONFIG.version) {
+            versionEl.innerHTML = `<span class="version-tag">Version ${APP_CONFIG.version}</span>`;
+        }
     };
 
     /**

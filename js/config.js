@@ -3,6 +3,7 @@
  * @type {Object}
  */
 export const APP_CONFIG = {
+    version: '1.0.3',
     ui: {
         // --- Timings (ms) ---
         toastDuration: 4000,       // Duration of popup notifications (toasts)
