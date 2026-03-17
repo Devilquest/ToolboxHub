@@ -376,18 +376,26 @@ class HTMLExtractor {
      * Updates the live preview with the currently extracted code.
      */
     updatePreview() {
-        const cssBlob = new Blob([this.extracted.css], { type: 'text/css' });
-        const jsBlob = new Blob([this.extracted.js], { type: 'application/javascript' });
-        const cssUrl = URL.createObjectURL(cssBlob);
-        const jsUrl = URL.createObjectURL(jsBlob);
+        let previewHtml = this.extracted.html;
         const useFolders = this.elements.useFoldersCheckbox.checked;
-        const cssFilename = this.elements.cssFilename.value;
-        const jsFilename = this.elements.jsFilename.value;
-        const cssLinkHref = useFolders ? `styles/${cssFilename}` : cssFilename;
-        const jsScriptSrc = useFolders ? `scripts/${jsFilename}` : jsFilename;
-        let previewHtml = this.extracted.html.replace(cssLinkHref, cssUrl).replace(jsScriptSrc, jsUrl);
+
+        if (this.extracted.css) {
+            const cssFilename = this.elements.cssFilename.value;
+            const cssLinkHref = useFolders ? `styles/${cssFilename}` : cssFilename;
+            const linkTag = `<link rel="stylesheet" href="${cssLinkHref}">`;
+            previewHtml = previewHtml.replace(linkTag, `<style>${this.extracted.css}</style>`);
+        }
+
+        if (this.extracted.js) {
+            const jsFilename = this.elements.jsFilename.value;
+            const jsScriptSrc = useFolders ? `scripts/${jsFilename}` : jsFilename;
+            const scriptTag = `<script src="${jsScriptSrc}" defer=""><\/script>`;
+            // We escape </script> to avoid breaking the preview if it appears inside the JS code (e.g. in strings)
+            const safeJs = this.extracted.js.replace(/<\/script>/gi, '<\\/script>');
+            previewHtml = previewHtml.replace(scriptTag, `<script>${safeJs}</script>`);
+        }
+
         this.elements.previewFrame.srcdoc = previewHtml;
-        setTimeout(() => { URL.revokeObjectURL(cssUrl); URL.revokeObjectURL(jsUrl); }, 10000);
     }
 
     /**
