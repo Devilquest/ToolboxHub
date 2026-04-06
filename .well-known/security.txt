@@ -1,0 +1,8 @@
+# ToolboxHub Security Policy
+# Reporting security vulnerabilities to the maintainer.
+
+Contact: https://github.com/Devilquest/ToolboxHub/issues
+Expires: 2027-01-01T00:00:00.000Z
+Preferred-Languages: en, es, ca
+Canonical: https://devilquest.github.io/ToolboxHub/.well-known/security.txt
+Policy: https://github.com/Devilquest/ToolboxHub/blob/main/SECURITY.md

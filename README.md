@@ -4,7 +4,7 @@
 
 **An all-in-one, private-first collection of simple and powerful online utilities.**
 
-![Version](https://img.shields.io/badge/version-1.0.3-blue.svg)
+![Version](https://img.shields.io/badge/version-1.0.4-blue.svg)
 [![Live Demo](https://img.shields.io/badge/Live%20Demo-Visit%20Site-10b981.svg)](https://devilquest.github.io/ToolboxHub/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-f59e0b.svg)](LICENSE)
 
@@ -479,6 +479,10 @@ The Hub's efficiency is built on a "Shared-First" architecture. Key global utili
 ---
 
 ## 📋 Changelog <a id="changelog"></a>
+### [1.0.4]
+- 🛡️ **Security & SEO**: Implemented `robots.txt`, `sitemap.xml`, and a comprehensive security policy (`security.txt`).
+- 🔒 **Hardening**: Strengthened Content Security Policy (CSP) headers.
+
 ### [1.0.3]
 - 🛠️ **System**: Implemented centralized versioning in `APP_CONFIG` and added a version tag in the Global Settings modal.
 

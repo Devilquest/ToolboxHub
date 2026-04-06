@@ -5,5 +5,5 @@
 .history/
 
 # Project Specific
-.agent/
+.agents/
 _design/
