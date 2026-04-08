@@ -1,4 +1,4 @@
-//=============================================
+﻿//=============================================
 // Imports & Exports
 //=============================================
 
@@ -178,7 +178,7 @@ class Router {
     loadToolCSS(toolId) {
         const link = document.createElement('link');
         link.rel = 'stylesheet';
-        link.href = `css/tools/${toolId}.css`;
+        link.href = `css/tools/${toolId}.css?v=2`;
         link.id = 'tool-style';
         document.head.appendChild(link);
         this.currentToolStyle = link;

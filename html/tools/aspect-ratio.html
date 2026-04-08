@@ -52,7 +52,7 @@
             </div>
         </div>
 
-        <div class="mt-lg flex-row-gap dimensions-container">
+        <div class="mt-lg dimensions-container">
             <div class="stack-sm">
                 <label>Width</label>
                 <div class="numeric-input-wrapper">
@@ -67,6 +67,7 @@
                     </div>
                 </div>
             </div>
+
             <div class="stack-sm">
                 <label>Height</label>
                 <div class="numeric-input-wrapper">
@@ -86,7 +87,11 @@
     </div>
 
     <div class="workstation-controls flex-between">
-        <button id="calculateRatioBtn" class="btn btn-primary" disabled="">Calculate Aspect Ratio</button>
+        <div class="flex-row-gap-sm">
+            <button id="calculateRatioBtn" class="btn btn-primary" disabled="">Calculate Aspect Ratio</button>
+            <button id="scaleMultiply" class="btn btn-primary" title="Scale Dimensions x2" disabled="">&times;2</button>
+            <button id="scaleDivide" class="btn btn-primary" title="Scale Dimensions / 2" disabled="">/ 2</button>
+        </div>
         <div class="flex-row-gap-sm">
             <button id="clearAspectBtn" class="btn btn-secondary" disabled="">Clear Aspect Ratio</button>
             <button id="clearDimensionsBtn" class="btn btn-secondary" disabled="">Clear Dimensions</button>

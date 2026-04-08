@@ -1,4 +1,4 @@
-import { isAllowedKey, initCustomSteppers } from '../core.js';
+﻿import { isAllowedKey, initCustomSteppers } from '../core.js';
 import { GlobalSettings } from '../utils/format-utils.js';
 
 //=============================================
@@ -19,7 +19,9 @@ class AspectRatioCalculator {
             clearAspectBtn: document.getElementById('clearAspectBtn'),
             clearDimensionsBtn: document.getElementById('clearDimensionsBtn'),
             clearAllBtn: document.getElementById('clearAllBtn'),
-            calculateRatioBtn: document.getElementById('calculateRatioBtn')
+            calculateRatioBtn: document.getElementById('calculateRatioBtn'),
+            scaleMultiply: document.getElementById('scaleMultiply'),
+            scaleDivide: document.getElementById('scaleDivide')
         };
 
         this.lastEdited = null;
@@ -63,6 +65,12 @@ class AspectRatioCalculator {
 
         const canCalculateRatio = !isNaN(width) && width > 0 && !isNaN(height) && height > 0;
         this.elements.calculateRatioBtn.disabled = !canCalculateRatio;
+
+        const widthValid = !isNaN(width) && width > 0;
+        const heightValid = !isNaN(height) && height > 0;
+        const canScale = widthValid || heightValid;
+        this.elements.scaleMultiply.disabled = !canScale;
+        this.elements.scaleDivide.disabled = !canScale;
 
         if (isNaN(arW) || isNaN(arH) || arW <= 0 || arH <= 0) {
             return;
@@ -115,6 +123,28 @@ class AspectRatioCalculator {
             return a;
         }
         return this._gcd(b, a % b);
+    }
+
+    /**
+     * Scales the active dimension by the given factor and recalculates.
+     * @param {number} factor
+     */
+    scaleDimension(factor) {
+        let field = this.lastEdited || 'width';
+        let input = field === 'width' ? this.elements.widthInput : this.elements.heightInput;
+        let value = GlobalSettings.parseInput(input.value.trim());
+
+        if (isNaN(value) || value <= 0) {
+            field = field === 'width' ? 'height' : 'width';
+            input = field === 'width' ? this.elements.widthInput : this.elements.heightInput;
+            value = GlobalSettings.parseInput(input.value.trim());
+        }
+
+        if (isNaN(value) || value <= 0) return;
+
+        input.value = this.formatResult(value * factor);
+        this.lastEdited = field;
+        this.calculateDimensions();
     }
 
     /**
@@ -266,6 +296,8 @@ class AspectRatioCalculator {
         this.elements.clearAspectBtn.addEventListener('click', () => this.clearAspect());
         this.elements.clearDimensionsBtn.addEventListener('click', () => this.clearDimensions());
         this.elements.clearAllBtn.addEventListener('click', () => this.clearAll());
+        this.elements.scaleMultiply.addEventListener('click', () => this.scaleDimension(2));
+        this.elements.scaleDivide.addEventListener('click', () => this.scaleDimension(0.5));
 
         this.arInputIds.forEach(id => this.elements[id].value = '');
         this.dimensionInputIds.forEach(id => this.elements[id].value = '');

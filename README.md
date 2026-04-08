@@ -4,7 +4,7 @@
 
 **An all-in-one, private-first collection of simple and powerful online utilities.**
 
-![Version](https://img.shields.io/badge/version-1.0.4-blue.svg)
+![Version](https://img.shields.io/badge/version-1.0.5-blue.svg)
 [![Live Demo](https://img.shields.io/badge/Live%20Demo-Visit%20Site-10b981.svg)](https://devilquest.github.io/ToolboxHub/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-f59e0b.svg)](LICENSE)
 
@@ -140,6 +140,7 @@ Perfect for resizing images, videos, or UI components while maintaining their pr
    - **Ratio Inference**: If you already have both dimensions and want to find their simplest ratio, click **Calculate Aspect Ratio**.
    - **GCD Logic**: The tool automatically finds the Greatest Common Divisor to provide the most simplified ratio (e.g., converting 1920:1080 into 16:9).
    - **Bidirectional editing**: You can switch between editing Width and Height, and the tool will always calculate the opposite value.
+   - **Rapid Scaling**: Use the **×2** and **/ 2** buttons in the lower control panel to instantly double or halve the last selected dimension, automatically updating the other.
 
 ### 🏦 Tax Calculator <a id="tax-calculator"></a>
 A versatile tool for calculating taxes using either a flat rate or a progressive bracket system.
@@ -394,6 +395,7 @@ A technical breakdown of the internal mechanics of each utility.
 ### 📏 Aspect Ratio Calculator <a id="aspect-ratio-calculator-logic"></a>
 - **Greatest Common Divisor (GCD)**: Computes the GCD using the Euclidean algorithm to find the simplest fraction representing any arbitrary dimension pair.
 - **Two-Way Binding**: Synchronizes aspect ratio inputs with dimension fields. Changing either the width or height of a target calculation automatically re-computes the missing side based on the defined ratio.
+- **Contextual Scaling Engine**: The algorithm tracks the last interacted input field. When multiplier buttons (×2 or / 2) are invoked, it targets the active dimension contextually and seamlessly triggers the two-way binding synchronizer.
 - **Preset Matching**: Continuously monitors custom ratio inputs and attempts to match them against industry standards (e.g., 16:9, 4:3, 21:9) using a tolerance threshold to simplify selection.
 - **Precision Control**: Uses `GlobalSettings.formatNumber` to handle fractional pixels, providing precise layout estimates while maintaining readability.
 
@@ -479,6 +481,10 @@ The Hub's efficiency is built on a "Shared-First" architecture. Key global utili
 ---
 
 ## 📋 Changelog <a id="changelog"></a>
+
+### [1.0.5]
+- 🛠️ **Aspect Ratio Calculator**: Added contextual ×2 and / 2 action buttons to the workstation controls for rapid dimension scaling.
+
 ### [1.0.4]
 - 🛡️ **Security & SEO**: Implemented `robots.txt`, `sitemap.xml`, and a comprehensive security policy (`security.txt`).
 - 🔒 **Hardening**: Strengthened Content Security Policy (CSP) headers.
