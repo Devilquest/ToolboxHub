@@ -528,6 +528,4 @@ Copyright (c) 2026 Devilquest.
 ## ❤️ Donations
 **Donations are always greatly appreciated. Thank you for your support!**
 
-<div align="center">
 <a href="https://www.buymeacoffee.com/devilquest" target="_blank"><img src="https://i.imgur.com/RHHFQWs.png" alt="Buy Me A Dinosaur"></a>
-</div>
