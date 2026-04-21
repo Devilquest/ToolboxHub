@@ -131,3 +131,8 @@ pre {
     font-family: var(--font-mono);
     white-space: pre-wrap;
 }
+
+
+body.modal-active {
+    overflow: hidden !important;
+}

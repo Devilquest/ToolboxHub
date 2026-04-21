@@ -1,5 +1,6 @@
-﻿import { isAllowedKey, initCustomSteppers } from '../core.js';
+import { isAllowedKey, initCustomSteppers } from '../core.js';
 import { GlobalSettings } from '../utils/format-utils.js';
+import { APP_CONFIG } from '../config.js';
 
 //=============================================
 // Aspect Ratio Calculator Tool
@@ -28,6 +29,11 @@ class AspectRatioCalculator {
         this.arInputIds = ['arWidth', 'arHeight'];
         this.dimensionInputIds = ['widthInput', 'heightInput'];
 
+        this.state = {
+            inputs: { arWidth: '', arHeight: '', widthInput: '', heightInput: '', arPreset: '' }
+        };
+
+        this.loadState();
         this.setupListeners();
 
         initCustomSteppers(document.getElementById('app'), (inputId) => {
@@ -45,6 +51,44 @@ class AspectRatioCalculator {
             });
             this.calculateDimensions();
         });
+    }
+
+    /**
+     * Loads saved tool state from localStorage.
+     */
+    loadState() {
+        try {
+            if (!GlobalSettings.canSaveData('aspect-ratio')) return;
+            const tool = APP_CONFIG.tools.list.find(t => t.id === 'aspect-ratio');
+            const saved = tool ? localStorage.getItem(tool.storageKey) : null;
+            if (saved) {
+                const parsed = JSON.parse(saved);
+                if (parsed.inputs) this.state.inputs = { ...this.state.inputs, ...parsed.inputs };
+                this.lastEdited = parsed.lastEdited || null;
+            }
+        } catch (e) {
+            console.error('Failed to load aspect ratio state:', e);
+        }
+    }
+
+    /**
+     * Persists current tool state to localStorage.
+     */
+    saveState() {
+        try {
+            if (!GlobalSettings.canSaveData('aspect-ratio')) return;
+            this.state.inputs.arWidth = this.elements.arWidth.value;
+            this.state.inputs.arHeight = this.elements.arHeight.value;
+            this.state.inputs.widthInput = this.elements.widthInput.value;
+            this.state.inputs.heightInput = this.elements.heightInput.value;
+            this.state.inputs.arPreset = this.elements.arPreset.value;
+            this.state.lastEdited = this.lastEdited;
+
+            const tool = APP_CONFIG.tools.list.find(t => t.id === 'aspect-ratio');
+            if (tool) localStorage.setItem(tool.storageKey, JSON.stringify(this.state));
+        } catch (e) {
+            console.error('Failed to save aspect ratio state:', e);
+        }
     }
 
     /**
@@ -87,6 +131,8 @@ class AspectRatioCalculator {
                 this.elements.widthInput.value = this.formatResult(width);
             }
         }
+
+        this.saveState();
     }
 
     /**
@@ -299,13 +345,15 @@ class AspectRatioCalculator {
         this.elements.scaleMultiply.addEventListener('click', () => this.scaleDimension(2));
         this.elements.scaleDivide.addEventListener('click', () => this.scaleDimension(0.5));
 
-        this.arInputIds.forEach(id => this.elements[id].value = '');
-        this.dimensionInputIds.forEach(id => this.elements[id].value = '');
-        this.elements.clearAspectBtn.disabled = true;
-        this.elements.clearDimensionsBtn.disabled = true;
-        this.elements.clearAllBtn.disabled = true;
-        this.elements.calculateRatioBtn.disabled = true;
-        this.handlePresetChange();
+        this.arInputIds.forEach(id => this.elements[id].value = this.state.inputs[id] || '');
+        this.dimensionInputIds.forEach(id => this.elements[id].value = this.state.inputs[id] || '');
+        
+        if (this.state.inputs.arPreset) {
+            this.elements.arPreset.value = this.state.inputs.arPreset;
+        }
+
+        this.updatePresetSelection();
+        this.calculateDimensions();
     }
 }
 

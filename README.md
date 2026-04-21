@@ -4,7 +4,7 @@
 
 **An all-in-one, private-first collection of simple and powerful online utilities.**
 
-![Version](https://img.shields.io/badge/version-1.0.5-blue.svg)
+![Version](https://img.shields.io/badge/version-1.0.6-blue.svg)
 [![Live Demo](https://img.shields.io/badge/Live%20Demo-Visit%20Site-10b981.svg)](https://devilquest.github.io/ToolboxHub/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-f59e0b.svg)](LICENSE)
 
@@ -398,6 +398,7 @@ A technical breakdown of the internal mechanics of each utility.
 - **Contextual Scaling Engine**: The algorithm tracks the last interacted input field. When multiplier buttons (×2 or / 2) are invoked, it targets the active dimension contextually and seamlessly triggers the two-way binding synchronizer.
 - **Preset Matching**: Continuously monitors custom ratio inputs and attempts to match them against industry standards (e.g., 16:9, 4:3, 21:9) using a tolerance threshold to simplify selection.
 - **Precision Control**: Uses `GlobalSettings.formatNumber` to handle fractional pixels, providing precise layout estimates while maintaining readability.
+- **Persistent State Tracking**: Interacts gracefully with `GlobalSettings.canSaveData` to continuously commit numeric values and preset states to `localStorage`, allowing uninterrupted continuation in new sessions.
 
 ### 🏦 Tax Calculator <a id="tax-calculator-logic"></a>
 - **Dynamic Mode Orchestration**: Supports "Basic" (flat rate) and "Advanced" (progressive bracket) modes. The engine iterates through defined tax tiers to calculate total liability across different income levels.
@@ -481,6 +482,10 @@ The Hub's efficiency is built on a "Shared-First" architecture. Key global utili
 ---
 
 ## 📋 Changelog <a id="changelog"></a>
+
+### [1.0.6]
+- 🛠️ **Aspect Ratio Calculator**: Integrated local state tracking via `GlobalSettings` to provide persistent component memory across sessions, with support for the global Data Saving permission controls.
+- 📐 **UI/UX Core**: Implemented Body Scroll Blocking across the Hub and refactored the Global Settings modal into a flex-bound container with internal viewport scrolling for improved mobile responsiveness.
 
 ### [1.0.5]
 - 🛠️ **Aspect Ratio Calculator**: Added contextual ×2 and / 2 action buttons to the workstation controls for rapid dimension scaling.

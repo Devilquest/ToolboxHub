@@ -487,6 +487,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (settingsModal) {
             populateSettingsUI();
             settingsModal.classList.add('open');
+            document.body.classList.add('modal-active');
         }
     };
 
@@ -496,6 +497,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const closeSettingsModal = () => {
         if (!settingsModal) return;
         settingsModal.classList.add('closing');
+        document.body.classList.remove('modal-active');
 
         const advanced = settingsModal.querySelector('.advanced-settings');
         if (advanced && advanced.hasAttribute('open') && !advanced.classList.contains('closing')) {
@@ -579,9 +581,11 @@ document.addEventListener('DOMContentLoaded', () => {
             btnConfirmAction.classList.add(`btn-${type}`);
 
             confirmModal.classList.add('open');
+            document.body.classList.add('modal-active');
             
             const handleCancel = () => {
                 confirmModal.classList.add('closing');
+                document.body.classList.remove('modal-active');
                 btnConfirmAction.removeEventListener('click', handleConfirm);
                 btnConfirmCancel.removeEventListener('click', handleCancel);
                 
@@ -593,6 +597,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const handleConfirm = () => {
                 confirmModal.classList.add('closing');
+                document.body.classList.remove('modal-active');
                 btnConfirmAction.removeEventListener('click', handleConfirm);
                 btnConfirmCancel.removeEventListener('click', handleCancel);
                 

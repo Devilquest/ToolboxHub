@@ -3,7 +3,7 @@
  * @type {Object}
  */
 export const APP_CONFIG = {
-    version: '1.0.5',
+    version: '1.0.6',
     ui: {
         // --- Timings (ms) ---
         toastDuration: 4000,       // Duration of popup notifications (toasts)
@@ -56,7 +56,7 @@ export const APP_CONFIG = {
         list: [
             { id: 'file-metadata', name: 'File Metadata Viewer', wide: false, phrase: ' to feed your metadata obsession' },
             { id: 'rule-of-three', name: 'Rule of Three Calculator', wide: false, phrase: ' for people who think everything is a matter of proportion' },
-            { id: 'aspect-ratio', name: 'Aspect Ratio Calculator', wide: false, phrase: ' for true pixel perfectionists' },
+            { id: 'aspect-ratio', name: 'Aspect Ratio Calculator', wide: false, phrase: ' for true pixel perfectionists', storageKey: 'aspectRatioState' },
             { id: 'css-compare', name: 'CSS Compare', wide: true, phrase: ' for developers allergic to duplicate code' },
             { id: 'html-extractor', name: 'HTML Extractor', wide: false, phrase: ' because CSS and JS deserve their own files' },
             { id: 'html-merger', name: 'HTML Merger', wide: true, phrase: ' when one file is all you need' },
